@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laura Interiors</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+
     .header-container {
       display: flex;
       justify-content: space-between;
@@ -13,23 +22,77 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding: 2rem;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
     }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+
     .header-left img {
       max-height: 80px;
+      border-radius: 8px;
     }
-    .header-center {
-      flex-grow: 1;
+
+    .header-center h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .header-center p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .header-right h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .header-right a {
+      color: #ffdd57;
+      text-decoration: none;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .scheduler {
       text-align: center;
+      padding: 2rem;
+      background: #f9f9f9;
     }
-    .header-right {
-      text-align: right;
+
+    .scheduler h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
-      .lightbox {
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #333;
+      color: white;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    .lightbox {
       display: none;
       position: fixed;
       z-index: 1000;
@@ -89,8 +152,8 @@
       <img src="images/LauraInteriorsLogo.png" alt="Laura Interiors Logo">
     </div>
     <div class="header-center">
-      <h1 style="margin: 0;">Laura Interiors</h1>
-      <p style="margin: 0;">Window Treatments | Shutters, Blinds, and Shades</p>
+      <h1>Laura Interiors</h1>
+      <p>Window Treatments | Shutters, Blinds, and Shades</p>
     </div>
     <div class="header-right">
       <h2>Contact</h2>
