@@ -22,7 +22,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding: 2rem;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      background: linear-gradient(135deg, #d3d3d3, #4f4f4f); /* Light gray to dark gray */
       color: white;
     }
 
@@ -52,14 +52,17 @@
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      overflow-x: auto;
       gap: 1rem;
       padding: 2rem;
+      scroll-behavior: smooth;
     }
 
     .gallery img {
-      width: 100%;
+      flex-shrink: 0;
+      width: auto;
+      height: 200px; /* Adjust height as needed */
       border-radius: 8px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
@@ -68,6 +71,15 @@
     .gallery img:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Optional: Hide horizontal scrollbar */
+    .gallery::-webkit-scrollbar {
+      display: none;
+    }
+    .gallery {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
     }
 
     .scheduler {
