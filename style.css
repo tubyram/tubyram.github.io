@@ -44,6 +44,8 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   padding: 2rem;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .gallery img {
@@ -52,4 +54,9 @@ footer {
   border: 1px solid #ddd;
   border-radius: 8px;
   object-fit: cover;
-} 
+}
+
+/* Remove or comment out these styles to show the scrollbar */
+.gallery::-webkit-scrollbar {
+  display: none; 
+}
