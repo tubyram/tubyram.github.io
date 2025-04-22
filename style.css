@@ -46,14 +46,15 @@ footer {
   padding: 2rem;
   scroll-behavior: smooth;
   width: 100%; /* Ensure it fits within the viewport */
-  max-width: 800px; /* Limit the visible width to 800px or any desired size */
+  max-width: 800px; /* Limit the visible width to 800px */
   box-sizing: border-box; /* Include padding in the width calculation */
   white-space: nowrap; /* Prevent images from wrapping to the next line */
 }
 
 .gallery img {
   flex-shrink: 0; /* Prevent images from shrinking */
-  width: auto; /* Maintain original width */
+  width: calc(33.33% - 1rem); /* Show 3 images at a time with spacing */
+  max-width: 250px; /* Optional: Limit the maximum width of each image */
   height: 200px; /* Set a consistent height */
   border: 1px solid #ddd;
   border-radius: 8px;
