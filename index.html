@@ -152,8 +152,9 @@
     }
 
     function navigateLightbox(direction) {
-      currentIndex = (currentIndex + direction + images.length) % images.length;
-      document.getElementById('lightbox-img').src = images[currentIndex].src;
-    }
+  currentIndex = (currentIndex + direction + images.length) % images.length;
+  document.getElementById('lightbox-img').src = images[currentIndex].src;
+}
+</script>
 </body>
 </html>
