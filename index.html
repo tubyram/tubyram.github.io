@@ -22,6 +22,10 @@
     .header-left img {
       max-height: 80px;
     }
+    .header-center {
+      flex-grow: 1;
+      text-align: center;
+    }
     .header-right {
       text-align: right;
     }
@@ -29,13 +33,12 @@
 </head>
 <body>
   <header class="header-container">
-    <div class="header-left" style="flex-direction: column; align-items: center; width: 100%; text-align: center;">
+    <div class="header-left">
       <img src="images/LauraInteriorsLogo.png" alt="Laura Interiors Logo">
-      <div>
-        <h1 style="margin: 0;">Laura Interiors</h1>
-        <p style="margin: 0;">Window Treatments | Shutters, Blinds, and Shades</p>
-      </div>
     </div>
+    <div class="header-center">
+      <h1 style="margin: 0;">Laura Interiors</h1>
+      <p style="margin: 0;">Window Treatments | Shutters, Blinds, and Shades</p>
     </div>
     <div class="header-right">
       <h2>Contact</h2>
