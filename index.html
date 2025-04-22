@@ -5,20 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laura Interiors</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .header-left img {
+      max-height: 80px;
+    }
+    .header-right {
+      text-align: right;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <img src="images/LauraInteriorsLogo.png" alt="Laura Interiors Logo" style="max-height: 80px; margin-bottom: 1rem;">
-    <h1>Laura Interiors</h1>
-    <p>Window Treatments | Shutters, Blinds, and Shades</p>
+  <header class="header-container">
+    <div class="header-left">
+      <img src="images/LauraInteriorsLogo.png" alt="Laura Interiors Logo">
+      <div>
+        <h1>Laura Interiors</h1>
+        <p>Window Treatments | Shutters, Blinds, and Shades</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <h2>Contact</h2>
+      <p>Phone: <a href="tel:817-734-8572">817-734-8572</a></p>
+      <p>Email: <a href="mailto:info@laurainteriors.com">info@laurainteriors.com</a></p>
+      <p>Location: Southlake, TX</p>
+    </div>
   </header>
-
-  <section class="contact">
-    <h2>Contact</h2>
-    <p>Phone: <a href="tel:817-734-8572">817-734-8572</a></p>
-    <p>Email: <a href="mailto:info@laurainteriors.com">info@laurainteriors.com</a></p>
-    <p>Location: Southlake, TX</p>
-  </section>
 
   <section class="scheduler">
     <h2>Book an Appointment</h2>
