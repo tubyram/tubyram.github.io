@@ -41,13 +41,14 @@ footer {
 
 .gallery {
   display: flex;
-  overflow-x: scroll; /* Enable horizontal scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
   gap: 1rem;
   padding: 2rem;
   scroll-behavior: smooth;
-  width: 100%; /* Ensure it doesn't stretch beyond the viewport */
-  max-width: 100vw; /* Prevent it from exceeding the viewport width */
+  width: 100%; /* Ensure it fits within the viewport */
+  max-width: 800px; /* Limit the visible width to 800px or any desired size */
   box-sizing: border-box; /* Include padding in the width calculation */
+  white-space: nowrap; /* Prevent images from wrapping to the next line */
 }
 
 .gallery img {
