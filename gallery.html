@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Gallery | Laura Interiors</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+    }
+    .lightbox.show {
+      display: flex;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -13,17 +35,33 @@
   </header>
 
   <section class="gallery">
-    <img src="images/project1.jpg" alt="Project 1" />
-    <img src="images/project2.jpg" alt="Project 2" />
-    <img src="images/project3.jpg" alt="Project 3" />
-    <img src="images/project4.jpg" alt="Project 4" />
-    <img src="images/project5.jpg" alt="Project 5" />
-    <img src="images/project6.jpg" alt="Project 6" />
-    <!-- Add more images as needed -->
+    <img src="images/project1.jpg" alt="Project 1" onclick="openLightbox(this.src)" />
+    <img src="images/project2.jpg" alt="Project 2" onclick="openLightbox(this.src)" />
+    <img src="images/project3.jpg" alt="Project 3" onclick="openLightbox(this.src)" />
+    <img src="images/project4.jpg" alt="Project 4" onclick="openLightbox(this.src)" />
+    <img src="images/project5.jpg" alt="Project 5" onclick="openLightbox(this.src)" />
+    <img src="images/project6.jpg" alt="Project 6" onclick="openLightbox(this.src)" />
   </section>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Expanded view" />
+  </div>
 
   <footer>
     <p>&copy; 2025 Laura Interiors</p>
   </footer>
+
+  <script>
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lightbox.classList.add('show');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('show');
+    }
+  </script>
 </body>
 </html>
