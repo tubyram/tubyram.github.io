@@ -17,6 +17,7 @@
       background: rgba(0, 0, 0, 0.8);
       justify-content: center;
       align-items: center;
+      flex-direction: column;
     }
     .lightbox img {
       max-width: 90%;
@@ -25,6 +26,38 @@
     }
     .lightbox.show {
       display: flex;
+    }
+    .lightbox-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .lightbox-button {
+      background: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .arrow-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 2rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .arrow-left {
+      left: 10px;
+    }
+    .arrow-right {
+      right: 10px;
     }
   </style>
 </head>
@@ -35,16 +68,21 @@
   </header>
 
   <section class="gallery">
-    <img src="images/project1.jpg" alt="Project 1" onclick="openLightbox(this.src)" />
-    <img src="images/project2.jpg" alt="Project 2" onclick="openLightbox(this.src)" />
-    <img src="images/project3.jpg" alt="Project 3" onclick="openLightbox(this.src)" />
-    <img src="images/project4.jpg" alt="Project 4" onclick="openLightbox(this.src)" />
-    <img src="images/project5.jpg" alt="Project 5" onclick="openLightbox(this.src)" />
-    <img src="images/project6.jpg" alt="Project 6" onclick="openLightbox(this.src)" />
+    <img src="images/project1.jpg" alt="Project 1" onclick="openLightbox(0)" />
+    <img src="images/project2.jpg" alt="Project 2" onclick="openLightbox(1)" />
+    <img src="images/project3.jpg" alt="Project 3" onclick="openLightbox(2)" />
+    <img src="images/project4.jpg" alt="Project 4" onclick="openLightbox(3)" />
+    <img src="images/project5.jpg" alt="Project 5" onclick="openLightbox(4)" />
+    <img src="images/project6.jpg" alt="Project 6" onclick="openLightbox(5)" />
   </section>
 
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-controls">
+      <button class="lightbox-button" onclick="closeLightbox()">Close ✖</button>
+    </div>
+    <button class="arrow-button arrow-left" onclick="navigateLightbox(-1)">&#10094;</button>
     <img id="lightbox-img" src="" alt="Expanded view" />
+    <button class="arrow-button arrow-right" onclick="navigateLightbox(1)">&#10095;</button>
   </div>
 
   <footer>
@@ -52,15 +90,32 @@
   </footer>
 
   <script>
-    function openLightbox(src) {
+    const imageSources = [
+      "images/project1.jpg",
+      "images/project2.jpg",
+      "images/project3.jpg",
+      "images/project4.jpg",
+      "images/project5.jpg",
+      "images/project6.jpg"
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
       const lightbox = document.getElementById('lightbox');
       const img = document.getElementById('lightbox-img');
-      img.src = src;
+      img.src = imageSources[currentIndex];
       lightbox.classList.add('show');
     }
 
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('show');
+    }
+
+    function navigateLightbox(direction) {
+      currentIndex = (currentIndex + direction + imageSources.length) % imageSources.length;
+      document.getElementById('lightbox-img').src = imageSources[currentIndex];
     }
   </script>
 </body>
