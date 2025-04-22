@@ -29,7 +29,59 @@
     .header-right {
       text-align: right;
     }
-  </style>
+      .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+    }
+    .lightbox.show {
+      display: flex;
+    }
+    .lightbox-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .lightbox-button {
+      background: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .arrow-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 2rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .arrow-left {
+      left: 10px;
+    }
+    .arrow-right {
+      right: 10px;
+    }
+</style>
 </head>
 <body>
   <header class="header-container">
@@ -47,18 +99,23 @@
       <p>Location: Southlake, TX</p>
     </div>
   </header>
-
-  
-
-
   <section class="gallery">
-    <img src="images/project1.jpg" alt="Project 1" />
-    <img src="images/project2.jpg" alt="Project 2" />
-    <img src="images/project3.jpg" alt="Project 3" />
-    <img src="images/project4.jpg" alt="Project 4" />
-    <img src="images/project5.jpg" alt="Project 5" />
-    <img src="images/project6.jpg" alt="Project 6" />
+    <img src="images/project1.jpg" alt="Project 1" onclick="openLightbox(this.src)" />
+    <img src="images/project2.jpg" alt="Project 2" onclick="openLightbox(this.src)" />
+    <img src="images/project3.jpg" alt="Project 3" onclick="openLightbox(this.src)" />
+    <img src="images/project4.jpg" alt="Project 4" onclick="openLightbox(this.src)" />
+    <img src="images/project5.jpg" alt="Project 5" onclick="openLightbox(this.src)" />
+    <img src="images/project6.jpg" alt="Project 6" onclick="openLightbox(this.src)" />
   </section>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-controls">
+      <button class="lightbox-button" onclick="closeLightbox()">Close ✖</button>
+    </div>
+    <button class="arrow-button arrow-left" onclick="navigateLightbox(-1)">&#10094;</button>
+    <img id="lightbox-img" src="" alt="Zoomed view">
+    <button class="arrow-button arrow-right" onclick="navigateLightbox(1)">&#10095;</button>
+  </div>
 
   <section class="scheduler">
     <h2>Book an Appointment</h2>
@@ -77,5 +134,31 @@
   <footer>
     <p>&copy; 2025 Laura Interiors</p>
   </footer>
+  <script>
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lightbox.classList.add('show');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('show');
+    }
+      const images = document.querySelectorAll('.gallery img');
+    let currentIndex = 0;
+
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lightbox.classList.add('show');
+      currentIndex = Array.from(images).findIndex(image => image.src === src);
+    }
+
+    function navigateLightbox(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      document.getElementById('lightbox-img').src = images[currentIndex].src;
+    }
 </body>
 </html>
