@@ -40,23 +40,23 @@ footer {
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex; /* Change from grid to flex */
+  overflow-x: auto; /* Enable horizontal scrolling */
   gap: 1rem;
   padding: 2rem;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  scroll-behavior: smooth; /* Optional: Smooth scrolling */
 }
 
 .gallery img {
-  width: 95%;
-  height: auto;
+  flex-shrink: 0; /* Prevent images from shrinking */
+  width: auto; /* Maintain original width */
+  height: 200px; /* Set a consistent height */
   border: 1px solid #ddd;
   border-radius: 8px;
   object-fit: cover;
 }
 
-/* Remove or comment out these styles to show the scrollbar */
+/* Optional: Remove scrollbar hiding styles */
 .gallery::-webkit-scrollbar {
-  display: none; 
+  display: block; /* Ensure the scrollbar is visible */
 }
