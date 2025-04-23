@@ -176,14 +176,7 @@
       <p>Location: Southlake, TX</p>
     </div>
   </header>
-  <section class="gallery">
-    <img src="images/project1.jpg" alt="Project 1" onclick="openLightbox(this.src)" />
-    <img src="images/project2.jpg" alt="Project 2" onclick="openLightbox(this.src)" />
-    <img src="images/project3.jpg" alt="Project 3" onclick="openLightbox(this.src)" />
-    <img src="images/project4.jpg" alt="Project 4" onclick="openLightbox(this.src)" />
-    <img src="images/project5.jpg" alt="Project 5" onclick="openLightbox(this.src)" />
-    <img src="images/project6.jpg" alt="Project 6" onclick="openLightbox(this.src)" />
-  </section>
+  <section class="gallery" id="gallery"></section>
 
   <div class="lightbox" id="lightbox">
     <div class="lightbox-controls">
@@ -212,12 +205,23 @@
     <p>&copy; 2025 Laura Interiors</p>
   </footer>
   <script>
-    
+    // Fetch images dynamically from the server
+    fetch('http://localhost:3000/api/images') // Use the correct port for the API
+      .then(response => response.json())
+      .then(images => {
+        const gallery = document.getElementById('gallery');
+        images.forEach(image => {
+          const img = document.createElement('img');
+          img.src = `http://localhost:3000/images/${image}`; // Use the correct port for the images
+          img.alt = image;
+          img.onclick = () => openLightbox(img.src);
+          gallery.appendChild(img);
+        });
+      })
+      .catch(error => console.error('Error fetching images:', error));
 
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('show');
-    }
-      const images = document.querySelectorAll('.gallery img');
+    // Lightbox functionality
+    const images = [];
     let currentIndex = 0;
 
     function openLightbox(src) {
@@ -225,13 +229,17 @@
       const img = document.getElementById('lightbox-img');
       img.src = src;
       lightbox.classList.add('show');
-      currentIndex = Array.from(images).findIndex(image => image.src === src);
+      currentIndex = images.findIndex(image => image.src === src);
     }
 
     function navigateLightbox(direction) {
-  currentIndex = (currentIndex + direction + images.length) % images.length;
-  document.getElementById('lightbox-img').src = images[currentIndex].src;
-}
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      document.getElementById('lightbox-img').src = images[currentIndex].src;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('show');
+    }
 </script>
 </body>
 </html>
