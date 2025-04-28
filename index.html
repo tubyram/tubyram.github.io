@@ -5,241 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laura Interiors</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 2rem;
-      background: linear-gradient(135deg, #d3d3d3, #4f4f4f); /* Light gray to dark gray */
-      color: white;
-    }
-
-    .header-left img {
-      max-height: 200px; /* Increase the maximum height */
-      width: auto; /* Maintain aspect ratio */
-      border-radius: 8px;
-    }
-
-    .header-center h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    .header-center p {
-      margin: 0;
-      font-size: 1.2rem;
-    }
-
-    .header-right h2 {
-      margin: 0 0 0.5rem;
-      font-size: 1.5rem;
-    }
-
-    .header-right a {
-      color: #ffdd57;
-      text-decoration: none;
-    }
-
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 2rem;
-      scroll-behavior: smooth;
-    }
-
-    .gallery img {
-      flex-shrink: 0;
-      width: auto;
-      height: 200px; /* Adjust height as needed */
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Optional: Hide horizontal scrollbar */
-    .gallery::-webkit-scrollbar {
-      display: none;
-    }
-    .gallery {
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-    }
-
-    .scheduler {
-      text-align: center;
-      padding: 2rem;
-      background: #f9f9f9;
-    }
-
-    .scheduler h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #333;
-      color: white;
-    }
-
-    footer p {
-      margin: 0;
-    }
-
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 80vh;
-      border-radius: 8px;
-    }
-    .lightbox.show {
-      display: flex;
-    }
-    .lightbox-controls {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      gap: 10px;
-    }
-    .lightbox-button {
-      background: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .arrow-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.8);
-      border: none;
-      font-size: 2rem;
-      padding: 0.5rem;
-      cursor: pointer;
-      z-index: 1001;
-    }
-    .arrow-left {
-      left: 10px;
-    }
-    .arrow-right {
-      right: 10px;
-    }
-</style>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <header class="header-container">
-    <div class="header-left">
-      <img src="images/LauraInteriorsLogo.png" alt="Laura Interiors Logo">
-    </div>
-    <div class="header-center">
-      <h1>Shade and Shutter Shop</h1>
-      <p>Window Treatments | Shutters, Blinds, and Shades</p>
-      <p>by Laura Interiors</p>
-    </div>
-    <div class="header-right">
-      <h2>Contact</h2>
-      <p>Phone: <a href="tel:817-734-8572">817-734-8572</a></p>
-      <p>Email: <a href="mailto:info@laurainteriors.com">info@laurainteriors.com</a></p>
-      <p>Location: Southlake, TX</p>
-    </div>
-  </header>
-  <section class="gallery" id="gallery"></section>
-
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-controls">
-      <button class="lightbox-button" onclick="closeLightbox()">Close ✖</button>
-    </div>
-    <button class="arrow-button arrow-left" onclick="navigateLightbox(-1)">&#10094;</button>
-    <img id="lightbox-img" src="" alt="Zoomed view">
-    <button class="arrow-button arrow-right" onclick="navigateLightbox(1)">&#10095;</button>
+  <div class="header-left">
+    <img src="LauraInteriorsLogo.png" alt="Laura Interiors Logo" />
   </div>
+  <div class="header-center">
+    <h1>Blind and Shutter Shop</h1>
+    <p>Shutters, Blinds, and Shades</p>
+    <p>by Laura Interiors</p>
+  </div>
+  <div class="header-right">
+    <h2>Contact</h2>
+    <p>Phone: <a href="tel:817-734-8572">817-734-8572</a></p>
+    <p>Email: <a href="mailto:info@laurainteriors.com">info@laurainteriors.com</a></p>
+    <p>Location: Southlake, TX</p>
+    <a href="appointment.html" class="appointment-link">Click here to book an appointment</a>
+  </div>
+  </header>
 
-  <section class="scheduler">
-    <h2>Book an Appointment</h2>
-    <!-- Calendly embed widget -->
-    <div style="min-width:320px;height:700px;">
-      <iframe
-        src="https://calendly.com/tubyram"
-        width="100%"
-        height="100%"
-        frameborder="0"
-        scrolling="no">
-      </iframe>
-    </div>
-  </section>
+<section class="gallery-grid">
+  <div class="tabs-container">
+    <button class="tab" onclick="switchImages('Alta-NaturalWovenShades')">Natural Woven Shades</button>
+    <button class="tab" onclick="switchImages('Norman-Shutters')">Shutters</button>
+    <button class="tab" onclick="switchImages('Alta-RollerShades')">Roller Shades</button>
+  </div>
+  <p class="gallery-description">
+    Explore our collection of premium window treatments. Click on a category to view more options.
+  </p>
+  <div class="grid-container" id="grid-container">
+    <!-- Images will be dynamically added here -->
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 Laura Interiors</p>
-  </footer>
-  <script>
-    // Fetch images dynamically from the server
-    fetch('http://localhost:3000/api/images') // Use the correct port for the API
-      .then(response => response.json())
-      .then(images => {
-        const gallery = document.getElementById('gallery');
-        images.forEach(image => {
-          const img = document.createElement('img');
-          img.src = `http://localhost:3000/images/${image}`; // Use the correct port for the images
-          img.alt = image;
-          img.onclick = () => openLightbox(img.src);
-          gallery.appendChild(img);
-        });
-      })
-      .catch(error => console.error('Error fetching images:', error));
+<footer>
+  <p>&copy; 2025 Laura Interiors</p>
+</footer>
 
-    // Lightbox functionality
-    const images = [];
-    let currentIndex = 0;
+<div id="image-modal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modal-image" />
+</div>
 
-    function openLightbox(src) {
-      const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      lightbox.classList.add('show');
-      currentIndex = images.findIndex(image => image.src === src);
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    function renderGrid(images) {
+      const gridContainer = document.getElementById('grid-container');
+
+      // Ensure the element exists
+      if (!gridContainer) {
+        console.error('Grid container not found in the DOM.');
+        return;
+      }
+
+      // Clear existing content
+      gridContainer.innerHTML = '';
+
+      // Add images to the grid
+      images.forEach(image => {
+        const img = document.createElement('img');
+        img.src = `http://localhost:3000/images/${image}`;
+        img.alt = image;
+        img.onclick = () => openImage(img.src); // Optional: Add click functionality
+        gridContainer.appendChild(img);
+      });
     }
 
-    function navigateLightbox(direction) {
-      currentIndex = (currentIndex + direction + images.length) % images.length;
-      document.getElementById('lightbox-img').src = images[currentIndex].src;
+    function openImage(src) {
+      const modal = document.getElementById('image-modal');
+      const modalImage = document.getElementById('modal-image');
+
+      // Set the image source
+      modalImage.src = src;
+
+      // Display the modal
+      modal.style.display = 'block';
     }
 
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('show');
+    function closeModal() {
+      const modal = document.getElementById('image-modal');
+      modal.style.display = 'none';
     }
+
+    // Attach closeModal to the global window object
+    window.closeModal = closeModal;
+
+    // Define the switchImages function and attach it to the global scope
+    window.switchImages = function (folderName) {
+      const tabs = document.querySelectorAll('.tab');
+      const description = document.querySelector('.gallery-description');
+
+      // Remove the 'active' class from all tabs
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      // Find the tab that matches the folderName and add the 'active' class
+      tabs.forEach(tab => {
+        if (tab.getAttribute('onclick').includes(folderName)) {
+          tab.classList.add('active');
+        }
+      });
+
+      // Update the gallery description text
+      const descriptions = {
+        'Alta-NaturalWovenShades': 
+            "<span style='font-size: 2em; color: #98760b;'>Natural Woven Shades</span> <br /> <br /> Natural Woven Shades offer a warm and organic look for your windows. They are crafted from natural materials, adding a touch of nature to your home decor.",
+
+        'Norman-Shutters': 
+          "<span style='font-size: 2em; color: #98760b;'>Shutters</span> <br /> <br /> Shutters provide timeless elegance and excellent light control.",
+
+        'Alta-RollerShades': 
+          "<span style='font-size: 2em; color: #98760b;'>Roller Shades</span> <br /> <br /> Roller Shades are sleek, modern, and perfect for any room."
+      };
+      description.innerHTML = descriptions[folderName] || 'Explore our collection of premium window treatments.';
+
+      // Fetch images from the selected folder
+      fetch(`http://localhost:3000/api/images/${folderName}`)
+        .then(response => {
+          console.log('Fetch response:', response); // Log the response
+          if (!response.ok) {
+            throw new Error(`Failed to load images from folder: ${folderName}`);
+          }
+          return response.json();
+        })
+        .then(images => {
+          console.log('Fetched images:', images); // Log the fetched images
+          renderGrid(images);
+        })
+        .catch(error => console.error('Error fetching images:', error));
+    };
+
+    // Initialize with the first folder
+    switchImages('Alta-NaturalWovenShades');
+
+    document.getElementById('image-modal').addEventListener('click', (event) => {
+  if (event.target === event.currentTarget) {
+    closeModal();
+  }
+});
+  });
 </script>
 </body>
 </html>

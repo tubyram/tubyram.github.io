@@ -37,47 +37,255 @@ footer {
   padding: 1rem;
   border-top: 1px solid #ccc;
   margin-top: 2rem;
+  max-width: 1200px; /* Match the header's max-width */
+  margin: 2rem auto; /* Center the footer and add vertical spacing */
 }
 
-.gallery {
+.gallery-carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 2rem auto;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
   display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  gap: 1rem;
-  padding: 2rem;
-  scroll-behavior: smooth;
-  width: 100%; /* Ensure it fits within the viewport */
-  max-width: 800px; /* Limit the visible width to 800px */
-  box-sizing: border-box; /* Include padding in the width calculation */
-  white-space: nowrap; /* Prevent images from wrapping to the next line */
+  align-items: center;
 }
 
-.gallery img {
-  flex-shrink: 0; /* Prevent images from shrinking */
-  width: calc(33.33% - 1rem); /* Show 3 images at a time with spacing */
-  max-width: 250px; /* Optional: Limit the maximum width of each image */
-  height: 200px; /* Set a consistent height */
-  border: 1px solid #ddd;
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.carousel-images img {
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
   border-radius: 8px;
-  object-fit: cover;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.carousel-arrow-left {
+  left: 10px;
+}
+
+.carousel-arrow-right {
+  right: 10px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.carousel-dots button {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.carousel-dots button.active {
+  background: #333;
+}
+
+.appointment-link {
+  color: white; /* Set the text color to white */
+  text-decoration: none; /* Remove underline */
+  background-color: #4f4f4f; /* Optional: Add a background color for better contrast */
+  padding: 0.5rem 1rem; /* Optional: Add padding for better appearance */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  display: inline-block; /* Ensure it behaves like a button */
+}
+
+button.appointment-link {
+  color: white !important; /* Force the text color to white */
+}
+
+.appointment-link:hover {
+  background-color: #333; /* Optional: Darken background on hover */
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+.gallery-grid {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min size from 150px to 300px */
+  gap: 1rem;
+}
+
+.grid-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.gallery img:hover {
+.grid-container img:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Optional: Remove scrollbar hiding styles */
-.gallery::-webkit-scrollbar {
-  height: 8px; /* Set scrollbar height */
+.header-container {
+  display: flex;
+  justify-content: space-evenly; /* Equal spacing between all sections */
+  align-items: center; /* Vertically align all sections */
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ccc;
+  max-width: 1200px;
+  margin: auto;
+  min-height: 200px; /* Ensures the header has a minimum height */
 }
 
-.gallery::-webkit-scrollbar-thumb {
-  background: #ccc; /* Style the scrollbar thumb */
-  border-radius: 4px;
+.header-left,
+.header-center,
+.header-right {
+  flex: 1; /* Allow each section to take up equal space */
+  text-align: center; /* Center text within each section */
 }
 
-.gallery::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Style the scrollbar track */
+.header-left {
+  display: flex;
+  justify-content: flex-start; /* Align content to the left */
+  align-items: center;
+}
+
+.header-left img {
+  max-width: 100%; /* Ensure the logo doesn't exceed the width of its container */
+  max-height: 150px; /* Adjust the maximum height of the logo */
+  height: auto; /* Maintain aspect ratio */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center;
+}
+
+.header-center h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header-center p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align content to the bottom */
+  align-items: flex-end; /* Align content to the right */
+  text-align: right;
+}
+
+.header-right h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.header-right p {
+  margin: 0.2rem 0;
+  font-size: 1.1rem;
+}
+
+.header-right a:hover {
+  text-decoration: underline;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  background: #4f4f4f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.tab:hover {
+  background: #333;
+}
+
+.tab.active {
+  background: #ff9800; /* Bright orange background for the active tab */
+  color: white; /* Ensure the text is readable */
+  border: 2px solid #ff9800; /* Add a bold border matching the background */
+  font-size: 1.1rem; /* Slightly increase the font size */
+  font-weight: bold; /* Make the text bold */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a shadow for emphasis */
+  transform: scale(1.1); /* Slightly enlarge the active tab */
+  transition: all 0.3s ease; /* Smooth transition for the effects */
+}
+
+.gallery-description {
+  text-align: center; /* Center the text */
+  margin: 40px 0; /* Add white space above and below */
+  font-size: 1.2em; /* Optional: Adjust font size for better readability */
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000; /* Ensure it appears on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+}
+
+.modal-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
 }
