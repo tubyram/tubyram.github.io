@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laura Interiors</title>
+  <title>Blinds and Shutters in Southlake, TX | Laura Interiors</title>
+  <meta name="description" content="Laura Interiors offers premium blinds, shutters, and shades in Southlake, TX. Contact us for high-quality window treatments and personalized service." />
+  <meta name="keywords" content="Blinds Southlake TX, Shutters Southlake TX, Window Treatments Southlake TX, Roller Shades Southlake TX, Laura Interiors" />
+  <meta name="author" content="Laura Interiors" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
@@ -14,8 +17,8 @@
   </div>
   <div class="header-center">
     <h1>Blind and Shutter Shop</h1>
-    <p>Shutters, Blinds, and Shades</p>
-    <p>by Laura Interiors</p>
+    <h2>Shutters, Blinds, and Shades</h2>
+    <h3>by Laura Interiors</h3>
   </div>
   <div class="header-right">
     <h2>Contact</h2>
@@ -78,6 +81,7 @@
         const img = document.createElement('img');
         img.src = `http://localhost:3000/images/${image}`;
         img.alt = image;
+        img.loading = 'lazy'; // Enable lazy loading
         img.onclick = () => openImage(img.src, images); // Pass the images array
         gridContainer.appendChild(img);
       });
@@ -178,6 +182,26 @@
     // Initialize the gallery in the default category without opening the modal 
     switchImages('Alta-NaturalWovenShades');
   });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Blind and Shutter Shop by Laura Interiors",
+  "description": "Premium blinds, shutters, and shades in Southlake, TX.",
+  "url": "https://blindandshuttershop.com",
+  "telephone": "+18177348572",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Southlake",
+    "addressRegion": "TX",
+    "postalCode": "76092",
+    "addressCountry": "US"
+  },
+  "image": "https://blindandshuttershop.com/LauraInteriorsLogo.png",
+  "priceRange": "$$"
+}
 </script>
 
 </body>
