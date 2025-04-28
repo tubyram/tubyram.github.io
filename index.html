@@ -47,10 +47,20 @@
 <div id="image-modal" class="modal">
   <span class="close" onclick="closeModal()">&times;</span>
   <img class="modal-content" id="modal-image" />
+  <button class="modal-arrow left-arrow" onclick="navigateImage(-1)">&#10094;</button>
+  <button class="modal-arrow right-arrow" onclick="navigateImage(1)">&#10095;</button>
 </div>
 
 <script>
+  console.log('Script loaded successfully');
+
   document.addEventListener('DOMContentLoaded', () => {
+    console.log('First DOMContentLoaded event fired');
+
+    // Ensure the modal is hidden by default
+    const modal = document.getElementById('image-modal');
+    modal.style.display = 'none';
+
     function renderGrid(images) {
       const gridContainer = document.getElementById('grid-container');
 
@@ -68,14 +78,30 @@
         const img = document.createElement('img');
         img.src = `http://localhost:3000/images/${image}`;
         img.alt = image;
-        img.onclick = () => openImage(img.src); // Optional: Add click functionality
+        img.onclick = () => openImage(img.src, images); // Pass the images array
         gridContainer.appendChild(img);
       });
     }
 
-    function openImage(src) {
-      const modal = document.getElementById('image-modal');
-      const modalImage = document.getElementById('modal-image');
+    let currentImageIndex = 0;
+    let currentImages = [];
+
+    function openImage(src, images) {
+      console.log('Going into zoom mode');
+
+      const modal = document.getElementById('image-modal'); // Ensure modal is selected
+      const modalImage = document.getElementById('modal-image'); // Select the modal image element
+
+      console.log('openImage called with src:', src); // Debugging log
+
+      // Set the current images and index
+      currentImages = images;
+      const srcFilename = src.split('/').slice(-2).join('/'); // Extract the last two segments from the URL
+      currentImageIndex = images.indexOf(srcFilename);
+      console.log('openImage: Current Image Index:', currentImageIndex);
+      console.log('openImage: src:', src);
+      console.log('openImage: srcFilename:', srcFilename);
+      console.log('openImage: images:', images);
 
       // Set the image source
       modalImage.src = src;
@@ -89,8 +115,21 @@
       modal.style.display = 'none';
     }
 
+    function navigateImage(direction) {
+      if (!currentImages.length) return;
+
+      // Update the current image index
+      currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
+
+      // Update the modal image source
+      const modalImage = document.getElementById('modal-image');
+      modalImage.src = `http://localhost:3000/images/${currentImages[currentImageIndex]}`;
+      console.log('navigateImage: Current Image Index:', currentImageIndex);
+    }
+
     // Attach closeModal to the global window object
     window.closeModal = closeModal;
+    window.navigateImage = navigateImage;
 
     // Define the switchImages function and attach it to the global scope
     window.switchImages = function (folderName) {
@@ -110,7 +149,7 @@
       // Update the gallery description text
       const descriptions = {
         'Alta-NaturalWovenShades': 
-            "<span style='font-size: 2em; color: #98760b;'>Natural Woven Shades</span> <br /> <br /> Natural Woven Shades offer a warm and organic look for your windows. They are crafted from natural materials, adding a touch of nature to your home decor.",
+          "<span style='font-size: 2em; color: #98760b;'>Natural Woven Shades</span> <br /> <br /> Natural Woven Shades offer a warm and organic look for your windows. They are crafted from natural materials, adding a touch of nature to your home decor.",
 
         'Norman-Shutters': 
           "<span style='font-size: 2em; color: #98760b;'>Shutters</span> <br /> <br /> Shutters provide timeless elegance and excellent light control.",
@@ -136,15 +175,10 @@
         .catch(error => console.error('Error fetching images:', error));
     };
 
-    // Initialize with the first folder
+    // Initialize the gallery in the default category without opening the modal 
     switchImages('Alta-NaturalWovenShades');
-
-    document.getElementById('image-modal').addEventListener('click', (event) => {
-  if (event.target === event.currentTarget) {
-    closeModal();
-  }
-});
   });
 </script>
+
 </body>
 </html>

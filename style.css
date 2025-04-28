@@ -125,6 +125,7 @@ button.appointment-link {
   text-decoration: underline; /* Optional: Add underline on hover */
 }
 
+/* Ensure the gallery is visible */
 .gallery-grid {
   padding: 2rem;
   max-width: 1200px;
@@ -138,8 +139,9 @@ button.appointment-link {
 }
 
 .grid-container img {
-  width: 100%;
-  height: auto;
+  width: 390px; /* Set a fixed width */
+  height: 260px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image fits within the dimensions without distortion */
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -268,16 +270,20 @@ button.appointment-link {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding-top: 50px; /* Add padding on top of the image */
 }
 
 .modal-content {
-  display: block;
-  margin: auto;
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 8px;
+  max-width: 90%; /* Ensure the image doesn't exceed the viewport width */
+  max-height: 90%; /* Ensure the image doesn't exceed the viewport height */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for better visibility */
+  margin: auto; /* Ensure the image is centered */
+  display: block; /* Ensure the image behaves as a block element */
 }
 
 .close {
@@ -288,4 +294,30 @@ button.appointment-link {
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 1001;
+  border-radius: 50%;
+}
+
+.left-arrow {
+  left: 20px;
+}
+
+.right-arrow {
+  right: 20px;
+}
+
+.modal-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
