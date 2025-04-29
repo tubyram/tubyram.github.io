@@ -1,264 +1,55 @@
-/* style.css */
+/* ========== Base Layout ========== */
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #fff;
-  color: #000;
-}
-
-header {
-  text-align: center;
-  padding: 2rem;
-  border-bottom: 1px solid #ccc;
-}
-
-section {
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
-}
-
-h1, h2 {
-  margin-bottom: 0.5rem;
+  background-color: #fff;
+  color: #333;
 }
 
 a {
-  color: black;
-  text-decoration: underline;
-}
-
-a:hover {
+  color: inherit;
   text-decoration: none;
 }
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  border-top: 1px solid #ccc;
-  margin-top: 2rem;
-  max-width: 1200px; /* Match the header's max-width */
-  margin: 2rem auto; /* Center the footer and add vertical spacing */
-}
-
-.gallery-carousel {
-  position: relative;
-  max-width: 800px;
-  margin: 2rem auto;
-  overflow: hidden;
-}
-
-.carousel-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.carousel-images {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-}
-
-.carousel-images img {
-  flex-shrink: 0;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  font-size: 2rem;
-  padding: 0.5rem;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.carousel-arrow-left {
-  left: 10px;
-}
-
-.carousel-arrow-right {
-  right: 10px;
-}
-
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.carousel-dots button {
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
-}
-
-.carousel-dots button.active {
-  background: #333;
-}
-
-.appointment-link {
-  color: white; /* Set the text color to white */
-  text-decoration: none; /* Remove underline */
-  background-color: #4f4f4f; /* Optional: Add a background color for better contrast */
-  padding: 0.5rem 1rem; /* Optional: Add padding for better appearance */
-  border-radius: 5px; /* Optional: Add rounded corners */
-  display: inline-block; /* Ensure it behaves like a button */
-}
-
-button.appointment-link {
-  color: white !important; /* Force the text color to white */
-}
-
-.appointment-link:hover {
-  background-color: #333; /* Optional: Darken background on hover */
-  text-decoration: underline; /* Optional: Add underline on hover */
-}
-
-/* Ensure the gallery is visible */
-.gallery-grid {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min size from 150px to 300px */
-  gap: 1rem;
-}
-
-.grid-container img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3/2; /* Maintain a nice 3:2 ratio */
-  object-fit: cover;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-.grid-container img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+/* ========== Header Layout ========== */
 
 .header-container {
   display: flex;
-  justify-content: space-evenly; /* Equal spacing between all sections */
-  align-items: center; /* Vertically align all sections */
+  justify-content: space-evenly;
+  align-items: center;
   padding: 1rem 2rem;
   border-bottom: 1px solid #ccc;
   max-width: 1200px;
   margin: auto;
-  min-height: 200px; /* Ensures the header has a minimum height */
-}
-
-.header-left,
-.header-center,
-.header-right {
-  flex: 1; /* Allow each section to take up equal space */
-  text-align: center; /* Center text within each section */
-}
-
-.header-left {
-  display: flex;
-  justify-content: flex-start; /* Align content to the left */
-  align-items: center;
+  flex-wrap: wrap;
 }
 
 .header-left img {
-  max-width: 100%; /* Ensure the logo doesn't exceed the width of its container */
-  max-height: 150px; /* Adjust the maximum height of the logo */
-  height: auto; /* Maintain aspect ratio */
-  width: auto; /* Maintain aspect ratio */
+  max-height: 200px; /* Increased from 120px to 240px */
+  width: auto;
 }
 
 .header-center {
   text-align: center;
   flex: 1;
   margin: 0 3rem;
-  max-height: 266px; /* Add maximum height */
-  overflow: hidden; /* Prevent content from overflowing */
 }
 
 .header-center h1 {
-  font-size: calc(1.5rem + 1.5vw);
-  margin-bottom: 0.5vw;
+  font-size: clamp(32px, 6vw, 56px);
+  margin: 0.3rem 0;
 }
 
 .header-center h2 {
-  font-size: calc(1rem + 1vw);
-  margin-bottom: 0.5vw;
+  font-size: clamp(24px, 5vw, 40px);
+  margin: 0.2rem 0;
 }
 
 .header-center h3 {
-  font-size: calc(0.8rem + 0.8vw);
-}
-
-/* Media queries for smaller screens */
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    padding: 1rem;
-    min-height: auto;
-  }
-
-  .header-left,
-  .header-center,
-  .header-right {
-    flex: none;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .header-left {
-    justify-content: center;
-  }
-
-  .header-right {
-    align-items: center;
-    text-align: center;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .header-center h1 {
-    font-size: calc(1rem + 1vw);
-  }
-
-  .header-center h2 {
-    font-size: calc(0.8rem + 0.8vw);
-  }
-
-  .header-center h3 {
-    font-size: calc(0.6rem + 0.6vw);
-  }
-
-  body {
-    font-size: 16px;
-  }
-  
-  h1, h2, h3 {
-    font-size: 1.5em;
-  }
-  
-  p, a {
-    font-size: 1em;
-  }
+  font-size: clamp(20px, 4vw, 32px);
+  margin: 0.2rem 0;
 }
 
 .header-right {
@@ -267,159 +58,135 @@ button.appointment-link {
   justify-content: flex-end;
   align-items: flex-end;
   text-align: right;
-  max-height: 266px;
-  overflow: hidden;
   padding: 1rem;
-  width: calc(100% - 2rem); /* Account for padding */
+  width: calc(100% - 2rem);
+  flex: 1;
+  min-width: 220px;
+}
+
+.header-right h2,
+.header-right p {
+  margin: 0.2rem 0;
+  line-height: 1.2;
 }
 
 .header-right h2 {
-  margin: 0 0 0.5rem;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: 20px;
 }
 
 .header-right p {
-  margin: 0.2rem 0;
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-size: 18px;
 }
 
 .header-right .appointment-link {
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
-  margin-top: 1rem;
+  font-size: 18px;
+  background-color: #98760b;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
 }
 
-@media (max-width: 768px) {
-  .header-right {
-    align-items: center;
-    text-align: center;
-  }
-  
-  .header-right h2 {
-    font-size: max(14px, min(2.5vw, 20px));
-  }
+/* ========== Gallery Layout ========== */
 
-  .header-right p {
-    font-size: max(12px, min(2vw, 6px));
-  }
-
-  .header-right .appointment-link {
-    font-size: max(12px, min(1.8vw, 6px));
-  }
-}
-
-@media (max-width: 480px) {
-  .header-right h2 {
-    font-size: max(13px, min(2.2vw, 18px));
-  }
-
-  .header-right p {
-    font-size: max(11px, min(1.8vw, 14px));
-  }
-
-  .header-right .appointment-link {
-    font-size: max(10px, min(1.5vw, 12px));
-  }
+.gallery-grid {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .tabs-container {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   margin-bottom: 1rem;
 }
 
 .tab {
-  padding: 0.5rem 1rem;
   margin: 0 0.5rem;
-  background: #4f4f4f;
-  color: white;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 5px;
+  background-color: #eee;
+  font-size: 1rem;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
-  min-width: 120px;
-  padding: 0.75rem 1rem; /* Increased padding for better touch targets */
-}
-
-.tab:hover {
-  background: #333;
+  border-radius: 4px;
 }
 
 .tab.active {
-  background: #ff9800; /* Bright orange background for the active tab */
-  color: white; /* Ensure the text is readable */
-  border: 2px solid #ff9800; /* Add a bold border matching the background */
-  font-size: 1.1rem; /* Slightly increase the font size */
-  font-weight: bold; /* Make the text bold */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a shadow for emphasis */
-  transform: scale(1.1); /* Slightly enlarge the active tab */
-  transition: all 0.3s ease; /* Smooth transition for the effects */
+  background-color: #98760b;
+  color: white;
 }
 
-.gallery-description {
-  text-align: center; /* Center the text */
-  margin: 40px 0; /* Add white space above and below */
-  font-size: 1.2em; /* Optional: Adjust font size for better readability */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
 }
+
+.grid-container img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-container img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== Modal ========== */
 
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  z-index: 1000; /* Ensure it appears on top */
+  z-index: 100;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  padding-top: 50px; /* Add padding on top of the image */
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-  max-width: 90%; /* Ensure the image doesn't exceed the viewport width */
-  max-height: 90%; /* Ensure the image doesn't exceed the viewport height */
-  border-radius: 8px; /* Optional: Add rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for better visibility */
-  margin: auto; /* Ensure the image is centered */
-  display: block; /* Ensure the image behaves as a block element */
-}
-
-.close {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .modal-arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
   font-size: 2rem;
-  padding: 0.5rem;
+  color: white;
+  background: none;
+  border: none;
   cursor: pointer;
-  z-index: 1001;
-  border-radius: 50%;
+  padding: 1rem;
+  z-index: 101;
 }
 
 .left-arrow {
-  left: 20px;
+  left: 0;
 }
 
 .right-arrow {
-  right: 20px;
+  right: 0;
 }
 
-.modal-arrow:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 101;
 }
 
 .fade-out {
@@ -430,4 +197,48 @@ button.appointment-link {
 .fade-in {
   opacity: 1;
   transition: opacity 0.3s ease;
+}
+
+/* ========== Footer ========== */
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* ========== Responsive Fixes ========== */
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .header-left,
+  .header-center,
+  .header-right {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .header-right h2,
+  .header-right p,
+  .header-right .appointment-link {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-right h2,
+  .header-right p,
+  .header-right .appointment-link {
+    font-size: 18px;
+    text-align: center;
+  }
 }
