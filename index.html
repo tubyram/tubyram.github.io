@@ -3,207 +3,174 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Blinds and Shutters in Southlake, TX | Laura Interiors</title>
   <meta name="description" content="Laura Interiors offers premium blinds, shutters, and shades in Southlake, TX. Contact us for high-quality window treatments and personalized service." />
   <meta name="keywords" content="Blinds Southlake TX, Shutters Southlake TX, Window Treatments Southlake TX, Roller Shades Southlake TX, Laura Interiors" />
   <meta name="author" content="Laura Interiors" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
+
 <body>
+  <!-- Header Section -->
   <header class="header-container">
-  <div class="header-left">
-    <img src="LauraInteriorsLogo.png" alt="Laura Interiors Logo" />
-  </div>
-  <div class="header-center">
-    <h1>Blind and Shutter Shop</h1>
-    <h2>Shutters, Blinds, and Shades</h2>
-    <h3>by Laura Interiors</h3>
-  </div>
-  <div class="header-right">
-    <h2>Contact</h2>
-    <p>Phone: <a href="tel:817-734-8572">817-734-8572</a></p>
-    <p>Email: <a href="mailto:info@laurainteriors.com">info@laurainteriors.com</a></p>
-    <p>Location: Southlake, TX</p>
-    <a href="appointment.html" class="appointment-link">Click here to book an appointment</a>
-  </div>
+    <div class="header-left">
+      <img src="LauraInteriorsLogo.png" alt="Laura Interiors Logo" />
+    </div>
+    <div class="header-center">
+      <h1>Blind and Shutter Shop</h1>
+      <h2>Shutters, Blinds, and Shades</h2>
+      <h3>by Laura Interiors</h3>
+    </div>
+    <div class="header-right">
+      <h2>Contact</h2>
+      <p>Phone: <a href="tel:817-734-8572">817-734-8572</a></p>
+      <p>Email: <a href="mailto:info@laurainteriors.com">info@laurainteriors.com</a></p>
+      <p>Location: Southlake, TX</p>
+      <a href="appointment.html" class="appointment-link">Click here to book an appointment</a>
+    </div>
   </header>
 
-<section class="gallery-grid">
-  <div class="tabs-container">
-    <button class="tab" onclick="switchImages('Alta-NaturalWovenShades')">Natural Woven Shades</button>
-    <button class="tab" onclick="switchImages('Norman-Shutters')">Shutters</button>
-    <button class="tab" onclick="switchImages('Alta-RollerShades')">Roller Shades</button>
+  <!-- Gallery Section -->
+  <section class="gallery-grid">
+    <div class="tabs-container">
+      <button class="tab" onclick="switchImages('Alta-NaturalWovenShades')">Natural Woven Shades</button>
+      <button class="tab" onclick="switchImages('Norman-Shutters')">Shutters</button>
+      <button class="tab" onclick="switchImages('Alta-RollerShades')">Roller Shades</button>
+    </div>
+    <p class="gallery-description">
+      Explore our collection of premium window treatments. Click on a category to view more options.
+    </p>
+    <div class="grid-container" id="grid-container">
+      <!-- Images will be dynamically added here -->
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Laura Interiors</p>
+  </footer>
+
+  <!-- Modal for Enlarged Image View -->
+  <div id="image-modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modal-image" />
+    <button class="modal-arrow left-arrow" onclick="navigateImage(-1)">&#10094;</button>
+    <button class="modal-arrow right-arrow" onclick="navigateImage(1)">&#10095;</button>
   </div>
-  <p class="gallery-description">
-    Explore our collection of premium window treatments. Click on a category to view more options.
-  </p>
-  <div class="grid-container" id="grid-container">
-    <!-- Images will be dynamically added here -->
-  </div>
-</section>
 
-<footer>
-  <p>&copy; 2025 Laura Interiors</p>
-</footer>
+  <!-- Gallery Scripts -->
+  <script>
+    console.log('Script loaded successfully');
 
-<div id="image-modal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="modal-image" />
-  <button class="modal-arrow left-arrow" onclick="navigateImage(-1)">&#10094;</button>
-  <button class="modal-arrow right-arrow" onclick="navigateImage(1)">&#10095;</button>
-</div>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded event fired');
 
-<script>
-  console.log('Script loaded successfully');
-
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('First DOMContentLoaded event fired');
-
-    // Ensure the modal is hidden by default
-    const modal = document.getElementById('image-modal');
-    modal.style.display = 'none';
-
-    function renderGrid(images) {
-      const gridContainer = document.getElementById('grid-container');
-
-      // Ensure the element exists
-      if (!gridContainer) {
-        console.error('Grid container not found in the DOM.');
-        return;
-      }
-
-      // Clear existing content
-      gridContainer.innerHTML = '';
-
-      // Add images to the grid
-      images.forEach(image => {
-        const img = document.createElement('img');
-        img.src = `http://localhost:3000/images/${image}`;
-        img.alt = image;
-        img.loading = 'lazy'; // Enable lazy loading
-        img.onclick = () => openImage(img.src, images); // Pass the images array
-        gridContainer.appendChild(img);
-      });
-    }
-
-    let currentImageIndex = 0;
-    let currentImages = [];
-
-    function openImage(src, images) {
-      console.log('Going into zoom mode');
-
-      const modal = document.getElementById('image-modal'); // Ensure modal is selected
-      const modalImage = document.getElementById('modal-image'); // Select the modal image element
-
-      console.log('openImage called with src:', src); // Debugging log
-
-      // Set the current images and index
-      currentImages = images;
-      const srcFilename = src.split('/').slice(-2).join('/'); // Extract the last two segments from the URL
-      currentImageIndex = images.indexOf(srcFilename);
-      console.log('openImage: Current Image Index:', currentImageIndex);
-      console.log('openImage: src:', src);
-      console.log('openImage: srcFilename:', srcFilename);
-      console.log('openImage: images:', images);
-
-      // Set the image source
-      modalImage.src = src;
-
-      // Display the modal
-      modal.style.display = 'block';
-    }
-
-    function closeModal() {
       const modal = document.getElementById('image-modal');
       modal.style.display = 'none';
-    }
 
-    function navigateImage(direction) {
-      if (!currentImages.length) return;
+      let currentImageIndex = 0;
+      let currentImages = [];
 
-      // Update the current image index
-      currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
-
-      // Update the modal image source
-      const modalImage = document.getElementById('modal-image');
-      modalImage.src = `http://localhost:3000/images/${currentImages[currentImageIndex]}`;
-      console.log('navigateImage: Current Image Index:', currentImageIndex);
-    }
-
-    // Attach closeModal to the global window object
-    window.closeModal = closeModal;
-    window.navigateImage = navigateImage;
-
-    // Define the switchImages function and attach it to the global scope
-    window.switchImages = function (folderName) {
-      const tabs = document.querySelectorAll('.tab');
-      const description = document.querySelector('.gallery-description');
-
-      // Remove the 'active' class from all tabs
-      tabs.forEach(tab => tab.classList.remove('active'));
-
-      // Find the tab that matches the folderName and add the 'active' class
-      tabs.forEach(tab => {
-        if (tab.getAttribute('onclick').includes(folderName)) {
-          tab.classList.add('active');
+      function renderGrid(images) {
+        const gridContainer = document.getElementById('grid-container');
+        if (!gridContainer) {
+          console.error('Grid container not found.');
+          return;
         }
-      });
+        gridContainer.innerHTML = '';
+        images.forEach(image => {
+          const img = document.createElement('img');
+          img.src = `http://localhost:3000/images/${image}`;
+          img.alt = image; // Can improve later
+          img.loading = 'lazy';
+          img.onclick = () => openImage(img.src, images);
+          gridContainer.appendChild(img);
+        });
+      }
 
-      // Update the gallery description text
-      const descriptions = {
-        'Alta-NaturalWovenShades': 
-          "<span style='font-size: 2em; color: #98760b;'>Natural Woven Shades</span> <br /> <br /> Natural Woven Shades offer a warm and organic look for your windows. They are crafted from natural materials, adding a touch of nature to your home decor.",
+      function openImage(src, images) {
+        console.log('Zoom mode entered');
+        currentImages = images;
+        const srcFilename = src.split('/').slice(-2).join('/');
+        currentImageIndex = images.indexOf(srcFilename);
+        document.getElementById('modal-image').src = src;
+        modal.style.display = 'flex';
+      }
 
-        'Norman-Shutters': 
-          "<span style='font-size: 2em; color: #98760b;'>Shutters</span> <br /> <br /> Shutters provide timeless elegance and excellent light control.",
+      function closeModal() {
+        modal.style.display = 'none';
+      }
 
-        'Alta-RollerShades': 
-          "<span style='font-size: 2em; color: #98760b;'>Roller Shades</span> <br /> <br /> Roller Shades are sleek, modern, and perfect for any room."
-      };
-      description.innerHTML = descriptions[folderName] || 'Explore our collection of premium window treatments.';
+      function navigateImage(direction) {
+        if (!currentImages.length) return;
+        currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
+        document.getElementById('modal-image').src = `http://localhost:3000/images/${currentImages[currentImageIndex]}`;
+      }
 
-      // Fetch images from the selected folder
-      fetch(`http://localhost:3000/api/images/${folderName}`)
-        .then(response => {
-          console.log('Fetch response:', response); // Log the response
-          if (!response.ok) {
-            throw new Error(`Failed to load images from folder: ${folderName}`);
+      window.closeModal = closeModal;
+      window.navigateImage = navigateImage;
+
+      window.switchImages = function(folderName) {
+        const tabs = document.querySelectorAll('.tab');
+        const description = document.querySelector('.gallery-description');
+
+        tabs.forEach(tab => tab.classList.remove('active'));
+        tabs.forEach(tab => {
+          if (tab.getAttribute('onclick').includes(folderName)) {
+            tab.classList.add('active');
           }
-          return response.json();
-        })
-        .then(images => {
-          console.log('Fetched images:', images); // Log the fetched images
-          renderGrid(images);
-        })
-        .catch(error => console.error('Error fetching images:', error));
-    };
+        });
 
-    // Initialize the gallery in the default category without opening the modal 
-    switchImages('Alta-NaturalWovenShades');
-  });
-</script>
+        const descriptions = {
+          'Alta-NaturalWovenShades': 
+            "<span style='font-size: 2em; color: #98760b;'>Natural Woven Shades</span><br /><br />Natural Woven Shades offer a warm and organic look for your windows. They are crafted from natural materials, adding a touch of nature to your home decor.",
+          'Norman-Shutters': 
+            "<span style='font-size: 2em; color: #98760b;'>Shutters</span><br /><br />Shutters provide timeless elegance and excellent light control.",
+          'Alta-RollerShades': 
+            "<span style='font-size: 2em; color: #98760b;'>Roller Shades</span><br /><br />Roller Shades are sleek, modern, and perfect for any room."
+        };
+        description.innerHTML = descriptions[folderName] || 'Explore our collection of premium window treatments.';
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Blind and Shutter Shop by Laura Interiors",
-  "description": "Premium blinds, shutters, and shades in Southlake, TX.",
-  "url": "https://blindandshuttershop.com",
-  "telephone": "+18177348572",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Southlake",
-    "addressRegion": "TX",
-    "postalCode": "76092",
-    "addressCountry": "US"
-  },
-  "image": "https://blindandshuttershop.com/LauraInteriorsLogo.png",
-  "priceRange": "$$"
-}
-</script>
+        fetch(`http://localhost:3000/api/images/${folderName}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Failed to load images for folder: ${folderName}`);
+            }
+            return response.json();
+          })
+          .then(images => {
+            renderGrid(images);
+          })
+          .catch(error => console.error('Error fetching images:', error));
+      };
 
+      // Initialize the gallery
+      switchImages('Alta-NaturalWovenShades');
+    });
+  </script>
+
+  <!-- Structured Data (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Blind and Shutter Shop by Laura Interiors",
+    "description": "Premium blinds, shutters, and shades in Southlake, TX.",
+    "url": "https://blindandshuttershop.com",
+    "telephone": "+18177348572",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Southlake",
+      "addressRegion": "TX",
+      "postalCode": "76092",
+      "addressCountry": "US"
+    },
+    "image": "https://blindandshuttershop.com/LauraInteriorsLogo.png",
+    "priceRange": "$$"
+  }
+  </script>
 </body>
 </html>
