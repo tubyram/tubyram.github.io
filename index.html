@@ -56,35 +56,46 @@
   <!-- Modal for Enlarged Image View -->
   <div id="image-modal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modal-image" />
+    <img class="modal-content" id="modal-image" alt="Enlarged View" />
     <button class="modal-arrow left-arrow" onclick="navigateImage(-1)">&#10094;</button>
     <button class="modal-arrow right-arrow" onclick="navigateImage(1)">&#10095;</button>
   </div>
 
   <!-- Gallery Scripts -->
   <script>
-    console.log('Script loaded successfully');
-
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded event fired');
-
       const modal = document.getElementById('image-modal');
+      const gridContainer = document.getElementById('grid-container');
+      const description = document.querySelector('.gallery-description');
+
       modal.style.display = 'none';
 
       let currentImageIndex = 0;
       let currentImages = [];
+      let currentFolderName = '';
 
       function renderGrid(images) {
-        const gridContainer = document.getElementById('grid-container');
         if (!gridContainer) {
           console.error('Grid container not found.');
           return;
         }
+
         gridContainer.innerHTML = '';
+
+        if (images.length === 0) {
+          const noImagesMessage = document.createElement('p');
+          noImagesMessage.textContent = "No images available for this category.";
+          noImagesMessage.style.textAlign = 'center';
+          noImagesMessage.style.fontSize = '1.2em';
+          noImagesMessage.style.color = '#666';
+          gridContainer.appendChild(noImagesMessage);
+          return;
+        }
+
         images.forEach(image => {
           const img = document.createElement('img');
-          img.src = `http://localhost:3000/images/${image}`;
-          img.alt = image; // Can improve later
+          img.src = `images/${image}`; // Relative path for production
+          img.alt = `Photo of ${currentFolderName.replace(/-/g, ' ')}`; // Better alt text
           img.loading = 'lazy';
           img.onclick = () => openImage(img.src, images);
           gridContainer.appendChild(img);
@@ -92,9 +103,8 @@
       }
 
       function openImage(src, images) {
-        console.log('Zoom mode entered');
         currentImages = images;
-        const srcFilename = src.split('/').slice(-2).join('/');
+        const srcFilename = src.split('/').slice(-1)[0];
         currentImageIndex = images.indexOf(srcFilename);
         document.getElementById('modal-image').src = src;
         modal.style.display = 'flex';
@@ -107,7 +117,7 @@
       function navigateImage(direction) {
         if (!currentImages.length) return;
         currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
-        document.getElementById('modal-image').src = `http://localhost:3000/images/${currentImages[currentImageIndex]}`;
+        document.getElementById('modal-image').src = `images/${currentImages[currentImageIndex]}`;
       }
 
       window.closeModal = closeModal;
@@ -115,7 +125,6 @@
 
       window.switchImages = function(folderName) {
         const tabs = document.querySelectorAll('.tab');
-        const description = document.querySelector('.gallery-description');
 
         tabs.forEach(tab => tab.classList.remove('active'));
         tabs.forEach(tab => {
@@ -134,7 +143,9 @@
         };
         description.innerHTML = descriptions[folderName] || 'Explore our collection of premium window treatments.';
 
-        fetch(`http://localhost:3000/api/images/${folderName}`)
+        currentFolderName = folderName;
+
+        fetch(`api/images/${folderName}`)
           .then(response => {
             if (!response.ok) {
               throw new Error(`Failed to load images for folder: ${folderName}`);
@@ -144,10 +155,13 @@
           .then(images => {
             renderGrid(images);
           })
-          .catch(error => console.error('Error fetching images:', error));
+          .catch(error => {
+            console.error('Error fetching images:', error);
+            gridContainer.innerHTML = '<p style="text-align: center; color: #c00;">Gallery temporarily unavailable. Please try again later.</p>';
+          });
       };
 
-      // Initialize the gallery
+      // Initialize gallery
       switchImages('Alta-NaturalWovenShades');
     });
   </script>
