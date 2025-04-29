@@ -41,13 +41,17 @@ app.get('/api/images/:folder', (req, res) => {
     const folderPath = path.join(imagesDir, folderName);
 
     // Check if the folder exists
+    console.log("Checking folder path:", folderPath);
     if (!fs.existsSync(folderPath)) {
       return res.status(404).send('Folder not found');
     }
 
     // Get all images recursively from the folder
     const imageFiles = getImagesRecursively(folderPath);
-    res.json(imageFiles); // Return the list of image paths
+    const baseFolder = path.join(imagesDir, folderName);
+    const trimmed = imageFiles.map(file => file.replace(`${folderName}/`, ''));
+    res.json(trimmed);
+    
   } catch (err) {
     console.error('Error:', err);
     res.status(500).send('Unable to fetch images');
