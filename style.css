@@ -139,13 +139,15 @@ button.appointment-link {
 }
 
 .grid-container img {
-  width: 390px; /* Set a fixed width */
-  height: 260px; /* Set a fixed height */
-  object-fit: cover; /* Ensure the image fits within the dimensions without distortion */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/2; /* Maintain a nice 3:2 ratio */
+  object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .grid-container img:hover {
   transform: scale(1.05);
@@ -207,18 +209,31 @@ button.appointment-link {
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
-  .header-center h1 {
-    font-size: calc(1.2rem + 1.2vw);
+  .header-container {
+    flex-direction: column;
+    padding: 1rem;
+    min-height: auto;
   }
 
-  .header-center h2 {
-    font-size: calc(0.9rem + 0.9vw);
+  .header-left,
+  .header-center,
+  .header-right {
+    flex: none;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
-  .header-center h3 {
-    font-size: calc(0.7rem + 0.7vw);
+  .header-left {
+    justify-content: center;
+  }
+
+  .header-right {
+    align-items: center;
+    text-align: center;
   }
 }
+
 
 @media (max-width: 480px) {
   .header-center h1 {
@@ -231,6 +246,18 @@ button.appointment-link {
 
   .header-center h3 {
     font-size: calc(0.6rem + 0.6vw);
+  }
+
+  body {
+    font-size: 16px;
+  }
+  
+  h1, h2, h3 {
+    font-size: 1.5em;
+  }
+  
+  p, a {
+    font-size: 1em;
   }
 }
 
@@ -276,7 +303,7 @@ button.appointment-link {
   }
 
   .header-right .appointment-link {
-    font-size: max(5px, min(1.8vw, 7px));
+    font-size: max(12px, min(1.8vw, 6px));
   }
 }
 
@@ -310,6 +337,8 @@ button.appointment-link {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease;
+  min-width: 120px;
+  padding: 0.75rem 1rem; /* Increased padding for better touch targets */
 }
 
 .tab:hover {
