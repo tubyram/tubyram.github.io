@@ -74,6 +74,7 @@
       let currentImages = [];
       let currentFolderName = '';
 
+
       function renderGrid(images) 
       {
         if (!gridContainer) {
@@ -172,27 +173,38 @@
 
         currentFolderName = folderName;
 
-        fetch(`http://localhost:3000/api/images/${folderName}`)
-          .then(response => {
-            console.log(`Fetched response status for "${folderName}":`, response.status);
-            if (!response.ok) {
-              throw new Error(`Failed to load images for folder: ${folderName}`);
-            }
-            return response.json();
-          })
-          .then(images => {
-            console.log(`Images received for "${folderName}":`, images);
-            renderGrid(images);
-          })
+
+        fetch(`/api/list-images?folderName=${folderName}`)
+          .then(response => response.json())
+          .then(imageUrls => {
+            renderGrid(imageUrls);
+            })
           .catch(error => {
-            console.error(`Fetch error for folder "${folderName}":`, error);
-            gridContainer.innerHTML = `
-              <p style="text-align: center; color: #c00;">
-          Gallery temporarily unavailable. Please try again later.
-              </p>`;
+            console.error('Error fetching images:', error);
           });
 
-      };
+
+      //   fetch(`http://localhost:3000/api/images/${folderName}`)
+      //     .then(response => {
+      //       console.log(`Fetched response status for "${folderName}":`, response.status);
+      //       if (!response.ok) {
+      //         throw new Error(`Failed to load images for folder: ${folderName}`);
+      //       }
+      //       return response.json();
+      //     })
+      //     .then(images => {
+      //       console.log(`Images received for "${folderName}":`, images);
+      //       renderGrid(images);
+      //     })
+      //     .catch(error => {
+      //       console.error(`Fetch error for folder "${folderName}":`, error);
+      //       gridContainer.innerHTML = `
+      //         <p style="text-align: center; color: #c00;">
+      //           Gallery temporarily unavailable. Please try again later.
+      //         </p>`;
+      //     });
+
+      // };
 
       // Click outside the modal image to close
       modal.addEventListener('click', (event) => {

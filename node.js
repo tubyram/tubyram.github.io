@@ -12,8 +12,27 @@ app.use(cors());
 // Serve static files from the images directory
 app.use('/images', express.static(imagesDir));
 
+import { list } from '@vercel/blob';
+
+export default async function handler(req, res) {
+  try {
+    const { blobs } = await list();
+
+    const folderName = req.query.folderName;
+    const images = blobs
+      .filter(blob => blob.pathname.startsWith(folderName + "/"))
+      .map(blob => blob.url);
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to list images' });
+  }
+}
+
 // Helper function to recursively get all image files
-function getImagesRecursively(dir) {
+function getImagesRecursively(dir) 
+{
   let results = [];
   const files = fs.readdirSync(dir); // Read all files and directories in the current directory
 
