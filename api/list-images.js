@@ -9,12 +9,15 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing folderName query param' });
     }
 
-    // List all blobs in your bucket
     const { blobs } = await list();
 
-    // Filter by folder prefix and only include image URLs
+    // 🔧 Only include valid image files inside the folder
     const imageUrls = blobs
-      .filter(blob => blob.pathname.startsWith(`${folder}/`))
+      .filter(blob =>
+        blob.pathname.startsWith(`${folder}/`) &&
+        /\.(jpe?g|png|gif|webp)$/i.test(blob.pathname) &&
+        blob.size > 0
+      )
       .map(blob => blob.url);
 
     res.status(200).json(imageUrls);

@@ -40,9 +40,8 @@
       <button class="tab" onclick="switchImages('Norman-Shutters')">Shutters</button>
       <button class="tab" onclick="switchImages('Alta-RollerShades')">Roller Shades</button>
     </div>
-    <p class="gallery-description">
-      Explore our collection of premium window treatments. Click on a category to view more options.
-    </p>
+    <div id="description" style="text-align: center; padding: 1.5rem 1rem; font-size: 1.1rem; max-width: 900px; margin: auto;"></div>
+
     <div class="grid-container" id="grid-container">
       <!-- Images will be dynamically added here -->
     </div>
@@ -63,182 +62,128 @@
 
   <!-- Gallery Scripts -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('image-modal');
-      const gridContainer = document.getElementById('grid-container');
-      const description = document.querySelector('.gallery-description');
-
+    let currentImages = [];
+    let currentImageIndex = 0;
+    let currentFolderName = '';
+    const modal = document.getElementById('image-modal');
+    const gridContainer = document.querySelector('.grid-container');
+    const description = document.getElementById('description');
+  
+    function renderGrid(images) {
+      if (!gridContainer) return;
+  
+      gridContainer.innerHTML = '';
+  
+      if (images.length === 0) {
+        const noImagesMessage = document.createElement('p');
+        noImagesMessage.textContent = "No images available for this category.";
+        noImagesMessage.style.textAlign = 'center';
+        noImagesMessage.style.fontSize = '1.2em';
+        noImagesMessage.style.color = '#666';
+        gridContainer.appendChild(noImagesMessage);
+        return;
+      }
+  
+      images.forEach(imageUrl => {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = 'Window treatment photo';
+        img.loading = 'lazy';
+        img.onclick = () => openImage(imageUrl, images);
+        gridContainer.appendChild(img);
+      });
+    }
+  
+    function openImage(src, images) {
+      currentImages = images;
+      currentImageIndex = images.indexOf(src);
+      document.getElementById('modal-image').src = src;
+      modal.style.display = 'flex';
+    }
+  
+    function closeModal() {
       modal.style.display = 'none';
-
-      let currentImageIndex = 0;
-      let currentImages = [];
-      let currentFolderName = '';
-
-
-      function renderGrid(images) 
-      {
-        if (!gridContainer) {
-          console.error('Grid container not found.');
-          return;
-        }
-
-        gridContainer.innerHTML = '';
-
-        if (images.length === 0) {
-          const noImagesMessage = document.createElement('p');
-          noImagesMessage.textContent = "No images available for this category.";
-          noImagesMessage.style.textAlign = 'center';
-          noImagesMessage.style.fontSize = '1.2em';
-          noImagesMessage.style.color = '#666';
-          gridContainer.appendChild(noImagesMessage);
-          return;
-        }
-
-        images.forEach(image => {
-          const img = document.createElement('img');
-          img.src = `images/${currentFolderName}/${image}`;  // Relative path for production
-          img.alt = `Photo of ${currentFolderName.replace(/-/g, ' ')}`; // Better alt text
-          img.loading = 'lazy';
-          img.onclick = () => openImage(img.src, images);
-          gridContainer.appendChild(img);
-        });
-      }
-
-      function openImage(src, images) 
-      {
-        currentImages = images;
-        const srcFilename = src.split('/').slice(-1)[0];
-        currentImageIndex = images.indexOf(srcFilename);
-        document.getElementById('modal-image').src = src;
-        modal.style.display = 'flex';
-      }
-
-      function closeModal() 
-      {
-        modal.style.display = 'none';
-      }
-
-      function navigateImage(direction) 
-      {
-        if (!currentImages.length) return;
-
-          const modalImage = document.getElementById('modal-image');
-
-          // Add fade-out class
-          modalImage.classList.add('fade-out');
-          modalImage.classList.remove('fade-in'); // Make sure to reset
-
-          setTimeout(() => {
-          // Update the current image index
-            currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
-
-            const nextImageFilename = currentImages[currentImageIndex];
-            const nextImagePath = `images/${currentFolderName}/${nextImageFilename}`;
-
-            // Change the image source
-            modalImage.src = nextImagePath;
-
-            // Force a reflow to restart the animation
-            void modalImage.offsetWidth;
-
-            // Fade-in new image
-            modalImage.classList.remove('fade-out');
-            modalImage.classList.add('fade-in');
-          }, 300); // Matches the CSS transition time
-      }
-
-      window.closeModal = closeModal;
-      window.navigateImage = navigateImage;
-
-      window.switchImages = function(folderName) 
-      {
-        const tabs = document.querySelectorAll('.tab');
-
-        tabs.forEach(tab => tab.classList.remove('active'));
-        tabs.forEach(tab => {
-          if (tab.getAttribute('onclick').includes(folderName)) {
-            tab.classList.add('active');
-          }
-        });
-
-        const descriptions = {
-          'Alta-NaturalWovenShades': 
-            "<span style='font-size: 2em; color: #98760b;'>Natural Woven Shades</span><br /><br />Natural Woven Shades offer a warm and organic look for your windows. They are crafted from natural materials, adding a touch of nature to your home decor.",
-          'Norman-Shutters': 
-            "<span style='font-size: 2em; color: #98760b;'>Shutters</span><br /><br />Shutters provide timeless elegance and excellent light control.",
-          'Alta-RollerShades': 
-            "<span style='font-size: 2em; color: #98760b;'>Roller Shades</span><br /><br />Roller Shades are sleek, modern, and perfect for any room."
-        };
-        description.innerHTML = descriptions[folderName] || 'Explore our collection of premium window treatments.';
-
-        currentFolderName = folderName;
-
-
-        fetch(`/api/list-images?folderName=${folderName}`)
-          .then(response => response.json())
-          .then(imageUrls => {
-            renderGrid(imageUrls);
-            })
-          .catch(error => {
-            console.error('Error fetching images:', error);
-          });
-
-
-      //   fetch(`http://localhost:3000/api/images/${folderName}`)
-      //     .then(response => {
-      //       console.log(`Fetched response status for "${folderName}":`, response.status);
-      //       if (!response.ok) {
-      //         throw new Error(`Failed to load images for folder: ${folderName}`);
-      //       }
-      //       return response.json();
-      //     })
-      //     .then(images => {
-      //       console.log(`Images received for "${folderName}":`, images);
-      //       renderGrid(images);
-      //     })
-      //     .catch(error => {
-      //       console.error(`Fetch error for folder "${folderName}":`, error);
-      //       gridContainer.innerHTML = `
-      //         <p style="text-align: center; color: #c00;">
-      //           Gallery temporarily unavailable. Please try again later.
-      //         </p>`;
-      //     });
-
-      // };
-
-      // Click outside the modal image to close
-      modal.addEventListener('click', (event) => {
-        const modalImage = document.getElementById('modal-image');
-        const isModalImage = event.target === modalImage;
-        const isArrowButton = event.target.classList.contains('modal-arrow');
-
-        // If clicked NOT on image and NOT on arrows, close
-        if (!isModalImage && !isArrowButton) {
-          closeModal();
+    }
+  
+    function navigateImage(direction) {
+      if (!currentImages.length) return;
+  
+      const modalImage = document.getElementById('modal-image');
+      modalImage.classList.add('fade-out');
+      modalImage.classList.remove('fade-in');
+  
+      setTimeout(() => {
+        currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
+        const nextImageUrl = currentImages[currentImageIndex];
+  
+        modalImage.src = nextImageUrl;
+        void modalImage.offsetWidth;
+        modalImage.classList.remove('fade-out');
+        modalImage.classList.add('fade-in');
+      }, 300);
+    }
+  
+    window.closeModal = closeModal;
+    window.navigateImage = navigateImage;
+  
+    window.switchImages = function(folderName) {
+      const tabs = document.querySelectorAll('.tab');
+  
+      tabs.forEach(tab => tab.classList.remove('active'));
+      tabs.forEach(tab => {
+        if (tab.getAttribute('onclick').includes(folderName)) {
+          tab.classList.add('active');
         }
       });
-
-      // Close modal when ESC key is pressed
-      document.addEventListener('keydown', (event) => {
-        const modal = document.getElementById('image-modal');
-
-        if (modal.style.display === 'flex') { // Only when modal is open
-          if (event.key === 'Escape') {
-            closeModal();
-          } else if (event.key === 'ArrowRight') {
-            navigateImage(1); // Go to next image
-          } else if (event.key === 'ArrowLeft') {
-            navigateImage(-1); // Go to previous image
-          }
-        }     
-      });
-
-      // Initialize gallery
-      switchImages('Alta-NaturalWovenShades');
+  
+      const descriptions = {
+        'Alta-NaturalWovenShades':
+          "<span style='font-size: 2em; color: #98760b;'>Natural Woven Shades</span><br /><br />Natural Woven Shades offer a warm and organic look for your windows. They are crafted from natural materials, adding a touch of nature to your home decor.",
+        'Norman-Shutters':
+          "<span style='font-size: 2em; color: #98760b;'>Shutters</span><br /><br />Shutters provide timeless elegance and excellent light control.",
+        'Alta-RollerShades':
+          "<span style='font-size: 2em; color: #98760b;'>Roller Shades</span><br /><br />Roller Shades are sleek, modern, and perfect for any room."
+      };
+  
+      description.innerHTML = descriptions[folderName] || 'Explore our collection of premium window treatments.';
+  
+      currentFolderName = folderName;
+  
+      fetch(`/api/list-images?folderName=${folderName}`)
+        .then(response => {
+          if (!response.ok) throw new Error(`Failed to load images for folder: ${folderName}`);
+          return response.json();
+        })
+        .then(images => renderGrid(images))
+        .catch(error => {
+          console.error(`Fetch error for folder "${folderName}":`, error);
+          gridContainer.innerHTML = `<p style="text-align: center; color: #c00;">Gallery temporarily unavailable. Please try again later.</p>`;
+        });
+    };
+  
+    // Click outside modal image to close
+    modal.addEventListener('click', (event) => {
+      const modalImage = document.getElementById('modal-image');
+      const isArrowButton = event.target.classList.contains('modal-arrow');
+      if (event.target !== modalImage && !isArrowButton) {
+        closeModal();
+      }
     });
-
+  
+    // ESC and arrow key support
+    document.addEventListener('keydown', (event) => {
+      if (modal.style.display === 'flex') {
+        if (event.key === 'Escape') {
+          closeModal();
+        } else if (event.key === 'ArrowRight') {
+          navigateImage(1);
+        } else if (event.key === 'ArrowLeft') {
+          navigateImage(-1);
+        }
+      }
+    });
   </script>
-
+  
   <!-- Structured Data (SEO) -->
   <script type="application/ld+json">
   {
