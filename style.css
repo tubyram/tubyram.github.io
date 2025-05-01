@@ -1,4 +1,4 @@
-/* ========== Base Layout ========== */
+/* ======== UPDATED MOBILE-FRIENDLY CSS ======== */
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,77 +13,42 @@ a {
   text-decoration: none;
 }
 
-/* ========== Header Layout ========== */
-
+/* ======== Header ======== */
 .header-container {
   display: flex;
-  justify-content: space-between;  /* Changed from space-evenly */
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem;
   border-bottom: 1px solid #ccc;
   max-width: 1200px;
   margin: auto;
   flex-wrap: wrap;
 }
 
-.header-left {
-  flex: 1;  /* Added */
-  padding: 1rem;
-  margin: 0.5rem;
-}
-
 .header-left img {
-  max-height: 200px; /* Increased from 120px to 240px */
+  max-height: 200px;
   width: auto;
 }
 
-.header-center {
-  text-align: center;
-  flex: 2;  /* Changed from 1 to 2 */
-  margin: 0.5rem 2rem;  /* Changed from 0 3rem */
-  padding: 1rem;
-}
-
 .header-center h1 {
-  font-size: clamp(20px, 4vw, 36px); /* Reduced from 24px, 5vw, 40px */
+  font-size: clamp(20px, 4vw, 36px);
   margin: 0.3rem 0;
 }
 
-.header-center h2 {
-  font-size: clamp(16px, 3vw, 28px); /* Reduced from 20px, 4vw, 32px */
-  margin: 0.2rem 0;
-}
-
+.header-center h2,
 .header-center h3 {
-  font-size: clamp(14px, 2.5vw, 20px); /* Reduced from 16px, 3vw, 24px */
+  font-size: clamp(16px, 3vw, 28px);
   margin: 0.2rem 0;
 }
 
 .header-right {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: flex-end;
   text-align: right;
   padding: 1rem;
-  margin: 0.5rem;
-  width: calc(100% - 3rem); /* Adjusted to account for new margin */
-  flex: 1;  /* Changed to match header-left */
+  flex: 1;
   min-width: 220px;
-}
-
-.header-right h2,
-.header-right p {
-  margin: 0.2rem 0;
-  line-height: 1.2;
-}
-
-.header-right h2 {
-  font-size: 20px;
-}
-
-.header-right p {
-  font-size: 18px;
 }
 
 .header-right .appointment-link {
@@ -96,37 +61,10 @@ a {
   display: inline-block;
 }
 
-/* ========== Gallery Layout ========== */
-
-.gallery-grid {
-  padding: 1rem;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.tabs-container {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.tab {
-  margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #eee;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.tab.active {
-  background-color: #98760b;
-  color: white;
-}
-
+/* ======== Gallery ======== */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
 }
 
@@ -145,70 +83,30 @@ a {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* ========== Modal ========== */
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  max-width: 90%;
-  max-height: 80vh;
-  object-fit: contain;
-}
-
-.modal-arrow {
-  position: absolute;
-  top: 50%;
-  font-size: 2rem;
-  color: white;
-  background: none;
+/* ======== Tabs ======== */
+.tab {
+  margin: 0.3rem 0.5rem;
+  padding: 0.8rem 1.2rem;
   border: none;
+  background-color: #eee;
+  font-size: 1.1rem;
   cursor: pointer;
-  padding: 1rem;
-  z-index: 101;
+  border-radius: 4px;
 }
 
-.left-arrow {
-  left: 0;
-}
-
-.right-arrow {
-  right: 0;
-}
-
-.close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
+.tab.active {
+  background-color: #98760b;
   color: white;
-  cursor: pointer;
-  z-index: 101;
 }
 
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* ======== Modal ======== */
+.close,
+.modal-arrow {
+  font-size: 3rem;
+  padding: 1.5rem;
 }
 
-.fade-in {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-/* ========== Footer ========== */
-
+/* ======== Footer ======== */
 footer {
   text-align: center;
   padding: 1rem;
@@ -216,13 +114,15 @@ footer {
   color: #888;
 }
 
-/* ========== Responsive Fixes ========== */
-
+/* ======== Responsive ======== */
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+  }
+
+  .header-left img {
+    max-height: 150px;
   }
 
   .header-left,
@@ -231,23 +131,42 @@ footer {
     text-align: center;
     align-items: center;
     width: 100%;
-    margin: 1rem 0.5rem;
+    margin: 0.5rem 0;
     padding: 0.5rem;
   }
 
-  .header-right h2,
-  .header-right p,
-  .header-right .appointment-link {
+  .header-center h1 {
+    font-size: 24px;
+  }
+
+  .header-center h2,
+  .header-center h3 {
     font-size: 18px;
-    text-align: center;
+  }
+
+  .header-right {
+    order: 3;
   }
 }
 
 @media (max-width: 480px) {
+  .header-left img {
+    max-height: 100px;
+  }
+
+  .header-center h1 {
+    font-size: 20px;
+  }
+
+  .header-center h2,
+  .header-center h3 {
+    font-size: 16px;
+  }
+
   .header-right h2,
   .header-right p,
   .header-right .appointment-link {
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
   }
 }
