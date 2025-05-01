@@ -39,6 +39,9 @@
       <button class="tab" onclick="switchImages('Alta-NaturalWovenShades')">Natural Woven Shades</button>
       <button class="tab" onclick="switchImages('Norman-Shutters')">Shutters</button>
       <button class="tab" onclick="switchImages('Alta-RollerShades')">Roller Shades</button>
+      <button class="tab" onclick="switchImages('Alta-BandedShades')">Banded Shades</button>
+      <button class="tab" onclick="switchImages('Norman-Blinds')">Blinds</button>
+
     </div>
     <div id="description" style="text-align: center; padding: 1.5rem 1rem; font-size: 1.1rem; max-width: 900px; margin: auto;"></div>
 
@@ -69,6 +72,11 @@
     const gridContainer = document.querySelector('.grid-container');
     const description = document.getElementById('description');
   
+    // Load Natural Woven Shades by default when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      switchImages('Alta-NaturalWovenShades');
+    });
+
     function renderGrid(images) {
       if (!gridContainer) return;
   
@@ -142,7 +150,11 @@
         'Norman-Shutters':
           "<span style='font-size: 2em; color: #98760b;'>Shutters</span><br /><br />Shutters provide timeless elegance and excellent light control.",
         'Alta-RollerShades':
-          "<span style='font-size: 2em; color: #98760b;'>Roller Shades</span><br /><br />Roller Shades are sleek, modern, and perfect for any room."
+          "<span style='font-size: 2em; color: #98760b;'>Roller Shades</span><br /><br />Roller Shades are sleek, modern, and perfect for any room.",
+        'Alta-BandedShades':
+          "<span style='font-size: 2em; color: #98760b;'>Banded Shades</span><br /><br />Banded Shades combine the functionality of blinds with the softness of fabric, allowing for versatile light control.",
+        'Norman-Blinds':
+          "<span style='font-size: 2em; color: #98760b;'>Blinds</span><br /><br />Blinds are a classic choice for window treatments, offering a variety of styles and materials.",
       };
   
       description.innerHTML = descriptions[folderName] || 'Explore our collection of premium window treatments.';

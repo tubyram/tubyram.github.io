@@ -17,13 +17,19 @@ a {
 
 .header-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;  /* Changed from space-evenly */
   align-items: center;
   padding: 1rem 2rem;
   border-bottom: 1px solid #ccc;
   max-width: 1200px;
   margin: auto;
   flex-wrap: wrap;
+}
+
+.header-left {
+  flex: 1;  /* Added */
+  padding: 1rem;
+  margin: 0.5rem;
 }
 
 .header-left img {
@@ -33,22 +39,23 @@ a {
 
 .header-center {
   text-align: center;
-  flex: 1;
-  margin: 0 3rem;
+  flex: 2;  /* Changed from 1 to 2 */
+  margin: 0.5rem 2rem;  /* Changed from 0 3rem */
+  padding: 1rem;
 }
 
 .header-center h1 {
-  font-size: clamp(32px, 6vw, 56px);
+  font-size: clamp(20px, 4vw, 36px); /* Reduced from 24px, 5vw, 40px */
   margin: 0.3rem 0;
 }
 
 .header-center h2 {
-  font-size: clamp(24px, 5vw, 40px);
+  font-size: clamp(16px, 3vw, 28px); /* Reduced from 20px, 4vw, 32px */
   margin: 0.2rem 0;
 }
 
 .header-center h3 {
-  font-size: clamp(20px, 4vw, 32px);
+  font-size: clamp(14px, 2.5vw, 20px); /* Reduced from 16px, 3vw, 24px */
   margin: 0.2rem 0;
 }
 
@@ -59,8 +66,9 @@ a {
   align-items: flex-end;
   text-align: right;
   padding: 1rem;
-  width: calc(100% - 2rem);
-  flex: 1;
+  margin: 0.5rem;
+  width: calc(100% - 3rem); /* Adjusted to account for new margin */
+  flex: 1;  /* Changed to match header-left */
   min-width: 220px;
 }
 
@@ -223,7 +231,8 @@ footer {
     text-align: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 1rem;
+    margin: 1rem 0.5rem;
+    padding: 0.5rem;
   }
 
   .header-right h2,
