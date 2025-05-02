@@ -17,7 +17,7 @@ a {
 
 .header-container {
   display: flex;
-  justify-content: space-between;  /* Changed from space-evenly */
+  justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   border-bottom: 1px solid #ccc;
@@ -26,37 +26,72 @@ a {
   flex-wrap: wrap;
 }
 
-.header-left {
-  flex: 1;  /* Added */
-  padding: 1rem;
-  margin: 0.5rem;
+.header-centre {
+  flex: 1.5;
+  padding: 0 0.1rem; /* Reduced horizontal padding */
+  margin: 0.1rem;
+  order: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.header-left img {
-  max-height: 200px; /* Increased from 120px to 240px */
+.header-centre img {
+  max-height: 200px;
   width: auto;
 }
 
-.header-center {
-  text-align: center;
-  flex: 2;  /* Changed from 1 to 2 */
-  margin: 0.5rem 2rem;  /* Changed from 0 3rem */
+.header-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  margin: 0.5rem 2rem;
   padding: 1rem;
+  gap: 2rem;
+  order: 1;
 }
 
-.header-center h1 {
-  font-size: clamp(20px, 4vw, 36px); /* Reduced from 24px, 5vw, 40px */
+.header-left-text {
+  text-align: left;
+  flex: 1;
+}
+
+.header-left-image {
+  flex: 0 0 auto;
+}
+
+.header-left h1 {
+  font-size: clamp(20px, 4vw, 36px);
   margin: 0.3rem 0;
 }
 
-.header-center h2 {
-  font-size: clamp(16px, 3vw, 28px); /* Reduced from 20px, 4vw, 32px */
+.header-left h2 {
+  font-size: clamp(16px, 3vw, 28px);
   margin: 0.2rem 0;
 }
 
-.header-center h3 {
-  font-size: clamp(14px, 2.5vw, 20px); /* Reduced from 16px, 3vw, 24px */
+.header-left h3 {
+  font-size: clamp(14px, 2.5vw, 20px);
   margin: 0.2rem 0;
+}
+
+.laura-photo {
+  max-width: 150px;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.experience-text {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.reviews-text {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0.5rem 0;
 }
 
 .header-right {
@@ -67,9 +102,9 @@ a {
   text-align: right;
   padding: 1rem;
   margin: 0.5rem;
-  width: calc(100% - 3rem); /* Adjusted to account for new margin */
-  flex: 1;  /* Changed to match header-left */
+  flex: 1;
   min-width: 220px;
+  order: 3;
 }
 
 .header-right h2,
@@ -226,29 +261,37 @@ footer {
     gap: 0.5rem;
   }
 
+  .header-centre {
+    margin: 0;
+    padding: 0.5rem;
+    order: 2;
+  }
+
+  .header-centre img {
+    max-height: 150px;
+  }
+
   .header-left {
+    flex-direction: column-reverse;
+    gap: 1rem;
     margin: 0;
     padding: 0.5rem;
+    order: 1;
   }
 
-  .header-left img {
-    max-height: 150px;  /* Smaller logo on mobile */
+  .header-left-text {
+    text-align: center;
   }
 
-  .header-center {
-    margin: 0;
-    padding: 0.5rem;
-  }
-
-  .header-center h1 {
+  .header-left h1 {
     font-size: clamp(18px, 3.5vw, 32px);
   }
 
-  .header-center h2 {
+  .header-left h2 {
     font-size: clamp(14px, 2.5vw, 24px);
   }
 
-  .header-center h3 {
+  .header-left h3 {
     font-size: clamp(12px, 2vw, 18px);
   }
 
@@ -257,6 +300,19 @@ footer {
     min-width: unset;
     margin: 0;
     padding: 0.5rem;
+    order: 3;
+  }
+
+  .laura-photo {
+    max-width: 120px;
+  }
+  
+  .experience-text {
+    font-size: 1rem;
+  }
+  
+  .reviews-text {
+    font-size: 0.9rem;
   }
 
   .tabs-container {
@@ -289,8 +345,8 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .header-left img {
-    max-height: 120px;  /* Even smaller logo on very small screens */
+  .header-centre img {
+    max-height: 120px;
   }
 
   .tab {
