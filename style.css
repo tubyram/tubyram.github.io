@@ -418,6 +418,21 @@ footer {
   transform: translateY(-2px);
 }
 
+.cta-button,
+.cta-button.large {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .cta-button,
+  .cta-button.large {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+}
+
 /* === CTA Section === */
 .cta-section {
   text-align: center;
