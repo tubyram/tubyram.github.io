@@ -11,11 +11,21 @@
 
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <!-- Header Section -->
-  <header class="header-container">
+  <header class="hero-section">
+    <div class="hero-content">
+      <img src="LauraInteriorsLogo.png" alt="Laura Interiors Logo" class="hero-logo">
+      <h1>Blinds, Shutters & Shades</h1>
+      <p class="hero-tagline">Elegant window treatments for your home or business</p>
+      <a href="appointment.html" class="cta-button">Schedule a Free Consultation</a>
+    </div>
+  </header>
+  
+  <!-- <header class="header-container">
     <div class="header-centre">
       <img src="LauraInteriorsLogo.png" alt="Laura Interiors Logo" />
     </div>
@@ -35,25 +45,34 @@
       <p>Southlake, TX</p>
       <a href="appointment.html" class="appointment-link">Click here to book an appointment</a>
     </div>
-  </header>
+  </header> -->
 
   <!-- Gallery Section -->
   <section class="gallery-grid">
-    <div class="tabs-container">
-      <button class="tab" onclick="switchImages('Alta-NaturalWovenShades')">Natural Woven Shades</button>
-      <button class="tab" onclick="switchImages('Norman-Shutters')">Shutters</button>
-      <button class="tab" onclick="switchImages('Alta-RollerShades')">Roller Shades</button>
-      <button class="tab" onclick="switchImages('Alta-BandedShades')">Banded Shades</button>
-      <button class="tab" onclick="switchImages('Norman-Blinds')">Blinds</button>
+    <div id="description" style="text-align: center; padding: 1.5rem 1rem; font-size: 1.1rem; max-width: 900px; margin: auto;">
 
     </div>
-    <div id="description" style="text-align: center; padding: 1.5rem 1rem; font-size: 1.1rem; max-width: 900px; margin: auto;"></div>
 
     <div class="grid-container" id="grid-container">
       <!-- Images will be dynamically added here -->
     </div>
-  </section>
 
+    <div id="category-grid"></div>
+      <button id="back-to-categories" style="display:none; margin: 1rem auto; padding: 0.5rem 1.5rem; font-size: 1rem; border-radius: 5px; background: #98760b; color: #fff; border: none; cursor: pointer;">
+        ← Back to Categories
+      </button>
+  </section>
+  
+  <section class="cta-section">
+    <h2>Transform Your Windows Today</h2>
+    <p>Schedule your free in-home consultation and see how our blinds, shutters, and shades can elevate your space.</p>
+    <a href="appointment.html" class="cta-button large">Book Your Appointment</a>
+  </section>
+  
+  <section class="trust-banner">
+    <p>★ 100+ 5-Star Reviews &nbsp; | &nbsp; Proudly Serving the Greater DFW Area &nbsp; | &nbsp; Locally Owned & Operated since 2008 in Southlake TX</p>
+  </section>
+  
   <!-- Footer Section -->
   <footer>
     <p>&copy; 2025 Laura Interiors</p>
@@ -69,6 +88,85 @@
 
   <!-- Gallery Scripts -->
   <script>
+    const categories = [
+      {
+        key: 'Alta-RollerShades',
+        label: 'Roller Shades'
+      },
+      {
+        key: 'Alta-NaturalWovenShades',
+        label: 'Natural Woven Shades'
+      },
+      {
+        key: 'Norman-Shutters',
+        label: 'Shutters'
+      },
+      {
+        key: 'Alta-BandedShades',
+        label: 'Banded Shades'
+      },
+      {
+        key: 'Norman-Blinds',
+        label: 'Blinds'
+      }
+    ];
+    
+    function showCategoryGrid() {
+      const categoryGrid = document.getElementById('category-grid');
+      const gridContainer = document.getElementById('grid-container');
+      const description = document.getElementById('description');
+      gridContainer.style.display = 'none';
+      description.innerHTML = 'We offer many types of window treatments. Select a category to view more images.';
+    
+      categoryGrid.innerHTML = '';
+      categoryGrid.style.display = 'grid';
+      categoryGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(220px, 1fr))';
+      categoryGrid.style.gap = '1.5rem';
+    
+      // Pre-create cards in order and store references
+      const cardElements = categories.map(category => {
+        const div = document.createElement('div');
+        div.className = 'category-card';
+        div.style.cursor = 'pointer';
+        div.innerHTML = `
+          <img src="fallback.jpg" alt="${category.label}" style="width:100%;height:180px;object-fit:cover;border-radius:8px;box-shadow:0 2px 8px #0001;">
+          <div style="text-align:center;margin-top:0.5rem;font-weight:600;">${category.label}</div>
+        `;
+        div.onclick = () => showCategory(category.key);
+        categoryGrid.appendChild(div);
+        return {div, category};
+      });
+    
+      // Fetch and update images in place
+      cardElements.forEach(({div, category}) => {
+        fetch(`/api/list-images?folderName=${category.key}`)
+          .then(res => res.json())
+          .then(images => {
+            const coverImg = images[0] || 'fallback.jpg';
+            div.querySelector('img').src = coverImg;
+          });
+      });
+    }
+    
+    const backBtn = document.getElementById('back-to-categories');
+
+    function showCategory(categoryKey) {
+      document.getElementById('grid-container').style.display = '';
+      document.getElementById('category-grid').style.display = 'none';
+      backBtn.style.display = ''; // Show the back button
+      switchImages(categoryKey);
+    }
+
+    backBtn.onclick = () => {
+      showCategoryGrid();
+      backBtn.style.display = 'none'; // Hide the back button
+    };
+    
+    // On initial load, show the category grid
+    document.addEventListener('DOMContentLoaded', () => {
+      showCategoryGrid();
+    });
+    
     let currentImages = [];
     let currentImageIndex = 0;
     let currentFolderName = '';
@@ -76,11 +174,7 @@
     const gridContainer = document.querySelector('.grid-container');
     const description = document.getElementById('description');
   
-    // Load Natural Woven Shades by default when page loads
-    document.addEventListener('DOMContentLoaded', () => {
-      switchImages('Alta-NaturalWovenShades');
-    });
-
+   
     function renderGrid(images) {
       if (!gridContainer) return;
   
