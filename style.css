@@ -498,10 +498,6 @@ footer {
     width: 100%;
   }
 
-  .shop-name {
-    font-size: 2rem;
-  }
-
   .hero-content-wrapper {
     flex-direction: column;
     align-items: center;
@@ -551,7 +547,7 @@ footer {
 
   .hero-logo {
     position: static; /* Remove absolute positioning */
-    width: 48px; /* Make logo 20% of original 120px size */
+    width: 30px; 
     height: auto;
     margin: 0 auto; /* Center horizontally */
   }
@@ -563,17 +559,8 @@ footer {
   }
 
   .shop-name {
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin-top: 0.5rem;
-  }
-
-  .shop-name {
-    font-size: 1.44rem; /* 1.8rem (original size) * 0.8 (80%) = 1.44rem */
-    margin-top: 0.5rem;
-  }
-
-  .company-name {
-    font-size: 0.72rem; /* 0.9rem * 0.8 = 0.72rem to maintain proportion */
   }
 }
 
