@@ -388,10 +388,7 @@ footer {
 }
 
 .hero-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
+  position: relative;
   width: 100%;
   max-width: 420px;
   margin: 0 auto;
@@ -399,14 +396,50 @@ footer {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 2rem;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.hero-content-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .hero-logo {
-  max-width: 320px;   /* Increase this value as needed */
-  width: 100%;
+  width: 120px;
   height: auto;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: white;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.title-wrapper {
+  text-align: center;
+}
+
+.shop-name {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: white;
+  line-height: 1.1;
   display: block;
-  margin-right: 20px;
+}
+
+.company-name {
+  font-size: 0.9rem;
+  color: white;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 .hero-section h1 {
@@ -419,7 +452,7 @@ footer {
 
 /* === CTA Button === */
 .cta-button {
-  background-color: #98760b;
+  background-color: #96632A;
   color: white;
   padding: 0.8rem 1.5rem;
   text-decoration: none;
@@ -429,7 +462,7 @@ footer {
 }
 
 .cta-button:hover {
-  background-color: #98760b;
+  background-color: #AB7233; /* Slightly lighter shade for hover state */
   transform: translateY(-2px);
 }
 
@@ -445,6 +478,45 @@ footer {
     padding: 0.6rem 1rem;
     white-space: nowrap;
     max-width: 100%;
+  }
+
+  .hero-content {
+    max-width: 95vw;
+    padding: 3rem 1.5rem 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-logo {
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    width: 60px;
+  }
+
+  .title-wrapper {
+    width: 100%;
+  }
+
+  .shop-name {
+    font-size: 2rem;
+  }
+
+  .hero-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+  }
+
+  .hero-title {
+    margin-top: 15px;
+    text-align: center;
   }
 
   .hero-content {
@@ -490,7 +562,7 @@ footer {
 
 /* === Trust Banner === */
 .trust-banner {
-  background-color: #98760b;
+  background-color: #96632A; /* Match the new brown color */
   color: white;
   text-align: center;
   padding: 1rem;
