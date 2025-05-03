@@ -15,7 +15,7 @@ a {
 }
 
 h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
