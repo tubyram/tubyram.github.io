@@ -376,25 +376,29 @@ footer {
 }
 
 .hero-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: url('hero-back.png') center/cover no-repeat;
-  padding: 6rem 2rem;
+  padding: 6rem 1rem; /* Reduced side padding for mobile */
   text-align: center;
   color: white;
+  box-sizing: border-box;
 }
 
 .hero-content {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: inline-block;
-  padding: 2rem;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  gap: 18px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .hero-logo {
@@ -441,6 +445,24 @@ footer {
     padding: 0.6rem 1rem;
     white-space: nowrap;
     max-width: 100%;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 10px;
+    width: calc(100% - 2rem); /* Account for padding */
+    max-width: 95vw;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+
+  .hero-logo {
+    margin: 0; /* Remove any margin that could affect centering */
+    max-width: 120px;
+  }
+
+  .hero-section {
+    padding: 4rem 0.5rem;
   }
 }
 
