@@ -381,7 +381,7 @@ footer {
   flex-direction: column;
   align-items: center;
   background: url('hero-back.png') center/cover no-repeat;
-  padding: 1rem 1rem; /* Reduced side padding for mobile */
+  padding: 2rem 1rem; /* Reduced side padding for mobile */
   text-align: center;
   color: white;
   box-sizing: border-box;

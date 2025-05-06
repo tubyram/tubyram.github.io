@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- Calendly widget scripts -->
+  <link href="https://calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 
 <body>
@@ -38,8 +41,11 @@
     </div>
     
     <div style="text-align: center; margin-top: 4rem;">
-      <a href="appointment.html" class="cta-button">Schedule a Free Consultation</a>
-    </p>
+      <a href="" 
+         onclick="Calendly.initPopupWidget({url: 'https://calendly.com/laluloh'});return false;"
+         class="cta-button">
+         Schedule a Free Consultation
+      </a>
     </div>
   </header>
 
@@ -62,7 +68,11 @@
   <section class="cta-section">
     <h3>Transform Your Windows Today</h3>
     <p>Schedule your free in-home consultation and discover how we can elevate the style, comfort, and functionality of your space.</p>
-    <a href="appointment.html" class="cta-button large">Book Your Appointment</a>
+    <a href="" 
+       onclick="Calendly.initPopupWidget({url: 'https://calendly.com/laluloh'});return false;"
+       class="cta-button large">
+       Book Your Appointment
+    </a>
   </section>
   
   <section class="trust-banner">
