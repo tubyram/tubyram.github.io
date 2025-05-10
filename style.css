@@ -422,7 +422,7 @@ footer {
   line-height: 1.1;
 }
 
-.title-wrapper {
+.site-title {
   text-align: center;
 }
 
@@ -494,7 +494,7 @@ footer {
     width: 60px;
   }
 
-  .title-wrapper {
+  .site-title {
     width: 100%;
   }
 
@@ -552,7 +552,7 @@ footer {
     margin: 0 auto; /* Center horizontally */
   }
 
-  .title-wrapper {
+  .site-title {
     width: 100%;
     text-align: center;
     margin: 0 auto;

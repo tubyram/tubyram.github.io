@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Blinds and Shutters in Southlake, TX | Laura Interiors</title>
-  <meta name="description" content="Laura Interiors offers premium blinds, shutters, shades, motorization and automation in Southlake, TX. Contact us for high-quality window treatments and personalized service." />
+  <title>Blind and Shutter Shop | Custom Window Treatments in Southlake, TX</title>
+  <meta name="description" content="Blind and Shutter Shop by Laura Interiors offers custom shades, blinds, shutters, motorization and automation in Southlake & the Greater DFW area. Locally owned, expert installation & free consultations!" />
   <meta name="keywords" content="Blinds Southlake TX, Shutters Southlake TX, Window Treatments Southlake TX, Roller Shades Southlake TX, Laura Interiors" />
-  <meta name="author" content="Laura Interiors" />
+  <meta name="author" content="Blind and Shutter Shop" />
 
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -15,22 +15,35 @@
   <!-- Calendly widget scripts -->
   <link href="https://calendly.com/assets/external/widget.css" rel="stylesheet">
   <script src="https://calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <!-- Open Graph / Facebook -->
+<meta property="og:title" content="Blind and Shutter Shop | Custom Window Treatments in Southlake, TX">
+<meta property="og:description" content="Locally owned, premium blinds, shutters, and shades. Serving Southlake & Greater DFW. Schedule your free consultation today!">
+<meta property="og:image" content="https://blindandshuttershop.com/logo-icon-gold-text.png">
+<meta property="og:url" content="https://blindandshuttershop.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blind and Shutter Shop | Custom Window Treatments in Southlake, TX">
+<meta name="twitter:description" content="Premium blinds, shutters & shades. Proudly serving Southlake, TX. Get a free consultation!">
+<meta name="twitter:image" content="https://blindandshuttershop.com/logo-icon-gold-text.png">
+
 </head>
 
 <body>
   <!-- Header Section -->
   <header class="hero-section">
     <div class="hero-content">
-      <img src="logo-icon-gold.png" alt="Laura Interiors Logo" class="hero-logo">
-      <div class="title-wrapper"> <!-- Co name -->
-        <span class="shop-name">
-          BLIND<br>
-          AND<br>
-          SHUTTER<br>
-          SHOP<br>
-        </span>
+      <img src="logo-icon-gold.png" alt="Laura Interiors Logo" class="hero-logo" />
+      <h1 class="site-title">
+          <span class="shop-name">
+              BLIND<br>
+              AND<br>
+              SHUTTER<br>
+              SHOP<br>
+          </span>
         <span class="company-name"><i>by</i> Laura Interiors</span>
-      </div>
+      </h1>
     </div>
     
     <div style="text-align: center; padding: 0.75rem; font-size: 1rem; color: white; background-color: rgba(0, 0, 0, 0.5); width: 100%; max-width: 420px; margin: 1rem auto; border-radius: 10px; box-sizing: border-box;">
@@ -69,6 +82,25 @@
     <a href="https://calendly.com/laluloh" target="_blank" class="cta-button large">
        Book Your Appointment
     </a>
+  </section>
+  
+  <section class="faq-section" style="max-width: 800px; margin: 4rem auto; padding: 1rem;">
+    <h2 style="text-align: center; color: #98760b; font-size: 1.8rem; margin-bottom: 1rem;">Frequently Asked Questions</h2>
+  
+    <div class="faq-item" style="margin-bottom: 1rem;">
+      <h3 style="margin: 0 0 0.5rem;">What areas do you serve?</h3>
+      <p style="margin: 0;">We proudly serve Southlake, Grapevine, Keller, Colleyville, and the greater DFW area.</p>
+    </div>
+  
+    <div class="faq-item" style="margin-bottom: 1rem;">
+      <h3 style="margin: 0 0 0.5rem;">Do you offer free consultations?</h3>
+      <p style="margin: 0;">Yes! You can schedule a free in-home consultation using our <a href="appointment.html">online booking tool</a>.</p>
+    </div>
+  
+    <div class="faq-item" style="margin-bottom: 1rem;">
+      <h3 style="margin: 0 0 0.5rem;">What types of window treatments do you offer?</h3>
+      <p style="margin: 0;">We specialize in plantation shutters, roller shades, natural woven shades, and other custom window treatments.</p>
+    </div>
   </section>
   
   <section class="trust-banner">
@@ -195,7 +227,7 @@
       images.forEach(imageUrl => {
         const img = document.createElement('img');
         img.src = imageUrl;
-        img.alt = 'Window treatment photo';
+        img.alt = `${currentFolderName.replace(/-/g, ' ')} - Window treatment photo`;
         img.loading = 'lazy';
         img.onclick = () => openImage(imageUrl, images);
         gridContainer.appendChild(img);
@@ -298,23 +330,101 @@
   
   <!-- Structured Data (SEO) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Blind and Shutter Shop by Laura Interiors",
-    "description": "Premium blinds, shutters, and shades in Southlake, TX.",
-    "url": "https://blindandshuttershop.com",
-    "telephone": "+18177348572",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Southlake",
-      "addressRegion": "TX",
-      "postalCode": "76092",
-      "addressCountry": "US"
-    },
-    "image": "https://blindandshuttershop.com/LauraInteriorsLogo.png",
-    "priceRange": "$$"
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Blind and Shutter Shop by Laura Interiors",
+      "image": "https://blindandshuttershop.com/logo-icon-gold-text.png",
+      "url": "https://blindandshuttershop.com",
+      "telephone": "+1-817-713-7162",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "505 Timber Lake Way",
+        "addressRegion": "TX",
+        "postalCode": "76092",
+        "addressCountry": "US"
+      },
+      "geo": { 
+        "@type": "GeoCoordinates",
+        "latitude": 32.934513,
+        "longitude": -97.160485
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100063469904177",
+        "https://www.instagram.com/blindandshutter.shop/"
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+    }
   </script>
+    
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What areas do you serve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We proudly serve Southlake, Grapevine, Keller, Colleyville, and the greater DFW area."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer free consultations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! You can schedule a free in-home consultation using our online booking tool."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What areas do you serve?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We proudly serve Southlake, Grapevine, Keller, Colleyville, and the greater DFW area."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer free consultations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can schedule a free in-home consultation using our online booking tool."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What types of window treatments do you offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We specialize in plantation shutters, roller shades, natural woven shades, and other custom window treatments."
+            }
+          }
+        ]
+      }
+      </script>
+      
 </body>
 </html>
