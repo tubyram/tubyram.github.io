@@ -618,3 +618,67 @@ footer {
   transform: translateY(-4px) scale(1.03);
   box-shadow: 0 4px 16px #0002;
 }
+
+.secondary-button {
+  display: inline-block;
+  background-color: white;
+  color: #98760b;
+  border: 2px solid #98760b;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.secondary-button:hover {
+  background-color: #98760b;
+  color: white;
+}
+
+/* --- CTA Buttons: Footer-matching color --- */
+.cta-button {
+  background-color: #4f4f4f;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.cta-button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+/* --- Secondary Button --- */
+.secondary-button {
+  background-color: white;
+  color: #4f4f4f;
+  border: 2px solid #4f4f4f;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.secondary-button:hover {
+  background-color: #4f4f4f;
+  color: white;
+}
+
+/* --- Tertiary Link-Button --- */
+.link-button {
+  color: #4f4f4f;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+.link-button:hover {
+  color: #222;
+}
