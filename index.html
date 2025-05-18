@@ -177,9 +177,8 @@
         <span style="color: #98760b;">&#9993;</span> laura@laurainteriors.com
       </p>
     </div>
-    
-    <div style="text-align: center; margin-top: 4rem;">
-      <a href="https://calendly.com/blindandshuttershop" target="_blank" class="cta-button">
+      <div style="text-align: center; margin-top: 4rem;">
+      <a id="header-calendly-cta" class="cta-button">
         📅 Schedule a Free Consultation
       </a>
     </div>
@@ -200,11 +199,10 @@
         ← Back to Categories
       </button>
   </section>
-  
-  <section class="cta-section">
+    <section class="cta-section">
     <h3>Transform Your Windows Today</h3>
     <p>📝 Schedule your free in-home consultation and discover how we can elevate the style, comfort, and functionality of your space.</p>
-    <a href="https://calendly.com/blindandshuttershop" class="cta-button" target="_blank">
+    <a id="calendly-cta" class="cta-button">
        Book Your Appointment
     </a>
     
@@ -475,10 +473,28 @@
     <a href="https://g.co/kgs/nSBreH7" target="_blank" rel="noopener" class="secondary-button">
       ★ Read all Google Reviews
     </a>
-  </div>
-  <section class="trust-banner">
+  </div>  <section class="trust-banner">
     <p>Locally Owned & Operated since 2008 in Southlake TX</p>
   </section>
+
+  <!-- Calendly Popup Widget Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize the "Book Your Appointment" button
+      document.getElementById('calendly-cta').addEventListener('click', function(e) {
+        e.preventDefault();
+        Calendly.initPopupWidget({url: 'https://calendly.com/blindandshuttershop'});
+        return false;
+      });
+      
+      // Initialize the header "Schedule a Free Consultation" button
+      document.getElementById('header-calendly-cta').addEventListener('click', function(e) {
+        e.preventDefault();
+        Calendly.initPopupWidget({url: 'https://calendly.com/blindandshuttershop'});
+        return false;
+      });
+    });
+  </script>
 
 </body>
 </html>
