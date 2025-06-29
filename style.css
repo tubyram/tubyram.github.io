@@ -243,7 +243,7 @@ p {
 
 footer {
   text-align: center;
-  padding: 1rem;
+  padding: 0;
   font-size: 0.9rem;
   color: #888;
 }
@@ -493,7 +493,7 @@ footer {
 
   .hero-content {
     max-width: 95vw;
-    padding: 3rem 1.5rem 1.5rem;
+    padding: 2rem 1.5rem 1.5rem;
     flex-direction: column;
     text-align: center;
   }
