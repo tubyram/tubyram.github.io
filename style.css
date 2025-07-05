@@ -558,7 +558,7 @@ footer {
 
   .hero-logo {
     position: static; /* Remove absolute positioning */
-    width: 30px; 
+    width: 80px; 
     height: auto;
     margin: 0 auto; /* Center horizontally */
   }
